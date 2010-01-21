@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <name xml:lang="en">Giggle</name>
+  <shortdesc xml:lang="en">Git repository viewer</shortdesc>
+  <shortdesc xml:lang="pl">Przeglądarka repozytoriów git</shortdesc>
+  <homepage rdf:resource="http://live.gnome.org/giggle" />
+  <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/giggle-list" />
+  <download-page rdf:resource="http://download.gnome.org/sources/giggle/" />
+  <bug-database rdf:resource="http://bugzilla.gnome.org/browse.cgi?product=giggle" />
+  <category rdf:resource="http://api.gnome.org/doap-extensions#development" />
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Mathias Hasselmann</foaf:name>
+      <foaf:mbox rdf:resource="mailto:mathias.hasselmann@gmx.de" />
+      <gnome:userid>tbf</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+  <mantainer>
+    <foaf:Person>
+      <foaf:name>Javier Jardón</foaf:name>
+      <foaf:mbox rdf:resource="mailto:jjardon@gnome.org" />
+      <gnome:userid>jjardon</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+</Project>
