@@ -15,6 +15,7 @@ libgiggle_git_h_files =  \
 	giggle-git-authors.h \
 	giggle-git-blame.h \
 	giggle-git-cat-file.h \
+	giggle-git-clone.h \
 	giggle-git-commit.h \
 	giggle-git-config.h \
 	giggle-git-config-read.h \
@@ -39,6 +40,7 @@ libgiggle_git_la_SOURCES = \
 	giggle-git-authors.c \
 	giggle-git-blame.c \
 	giggle-git-cat-file.c \
+	giggle-git-clone.c \
 	giggle-git-commit.c \
 	giggle-git-config.c \
 	giggle-git-config-read.c \
