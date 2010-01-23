@@ -1,0 +1,45 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="introduction">
+  <info>
+    <link type="guide" xref="index"/>
+    <desc>
+      Introduction to the <app>Giggle</app> GIT repository viewer
+    </desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+  </info>
+
+  <title>Introduction</title>
+  <p>The <app>Giggle</app> application enables you to graphically browse and manipulate the contents of a git directory tree.</p>
+
+  <section id="starting-giggle">
+    <title>Starting <app>giggle</app></title>
+      <p>You can start <app>giggle</app> in the following ways:</p>
+      <steps>
+        <item>
+          <p>Choose <guiseq><gui>Programming</gui> <gui>Giggle</gui></guiseq> from the <gui>Applications</gui> menu.</p>
+        </item>
+        <item>
+          <p>Run <cmd>giggle</cmd> at the prompt in a terminal such or from the <gui>Run Application</gui> dialog.</p>
+        </item>
+      </steps>
+  </section>
+
+  <section id="stoping-giggle">
+    <title>Closing <app>giggle</app></title>
+      <p>To close <app>giggle</app> choose <guiseq><gui>Project</gui><gui>Quit</gui></guiseq>, or press <keyseq><key>Ctrl</key><key>Q</key></keyseq>.</p>
+  </section>
+
+</page>

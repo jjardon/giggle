@@ -1,0 +1,37 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="opening-repositories">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>
+      Opening GIT repositories
+    </desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+  </info>
+
+  <title>Opening a repository</title>
+  <p>You can open a git repository in the following ways:</p>
+    <steps>
+      <item>
+        <p>using <guiseq><gui>Project</gui><gui>Open</gui></guiseq>, and selecting the directory with your repository,</p>
+      </item>
+      <item>
+        <p>running <cmd>giggle</cmd> in your project's directory,</p>
+      </item>
+      <item>
+        <p>running <cmd>giggle</cmd> with the repository path specified as an argument.</p>
+      </item>
+   </steps>
+</page>

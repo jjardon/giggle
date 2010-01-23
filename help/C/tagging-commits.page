@@ -1,0 +1,29 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="tagging-commits">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>
+      Tagging commits
+    </desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+  </info>
+
+  <title>Tagging commits</title>
+    <p>To make a new tag open the context menu by right clicking on a commit in the revision window (it doesn't matter if it's the Browse or History view), then click <gui>Create tag</gui> and enter a name in the just opened dialog window.</p>
+    <p>You will notice that near the revision you have selected a new icon has appeared - it's your newly created tag.</p>
+
+</page>
+

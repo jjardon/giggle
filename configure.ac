@@ -134,6 +134,10 @@ AM_GLIB_DEFINE_LOCALEDIR(LOCALEDIR)
 
 AC_SUBST([CONFIG_STATUS_DEPENDENCIES],['$(top_srcdir)/po/LINGUAS'])
 
+dnl  -------------
+dnl | User Manual |---------------------------------------
+dnl  -------------
+GNOME_DOC_INIT([0.17.3])
 
 dnl  -----------------------
 dnl | GTK+ platform check   |----------------------------------
@@ -178,8 +182,9 @@ dnl -----------------------------------------------------------
 AC_CONFIG_FILES([
         Makefile
         data/Makefile
-        libgiggle-git/Makefile
+        help/Makefile
         libgiggle/Makefile
+        libgiggle-git/Makefile
         pixmaps/Makefile
         plugins/Makefile
         po/Makefile.in
