@@ -22,6 +22,8 @@ giggle_SOURCES = \
 	giggle-avatar-image.h \
 	giggle-branches-view.c \
 	giggle-branches-view.h \
+	giggle-clone-dialog.c \
+	giggle-clone-dialog.h \
 	giggle-description-editor.c \
 	giggle-description-editor.h \
 	giggle-diff-view.c \
