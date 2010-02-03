@@ -1,0 +1,51 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="history-view">
+  <info>
+    <link type="guide" xref="index#views"/>
+    <desc>
+      Viewing the history of a repository
+    </desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+  </info>
+
+  <title>History view</title>
+   <figure>
+    <title>History view set up</title>
+    <desc>Giggle in History view mode</desc>
+    <media type="image" src="figures/giggle-main_window_sections.png"/>
+   </figure>
+    <p><app>Giggle</app>'s history view is set up in three main parts: </p>
+     <list type="numbered">
+       <item>
+        <p>History graph</p>
+        <p>Displays a visual representation of the current repository history, including all the branches  be it remote or local. By hovering the mouse cursor over the icons you can display additional information, such as branch and tag names. Moving through history is accomplished either by using the mouse or the <key>Up</key> and <key>Down</key> keys.</p>
+       </item>
+       <item>
+        <p>Changed files</p>
+        <p>Displays files changed in the currently selected revision</p>
+       </item>
+       <item>
+        <p>Diff</p>
+        <p>Displays the differences for the selected file and revision.</p>
+        <note style="important">
+          <p><app>Giggle</app> displays the differences as individual chunks, you can move between them either by using the Up and Down icons above the list of changed files, or by pressing <keyseq><key>Alt</key><key>Up</key></keyseq> and <keyseq><key>Alt</key><key>Down</key></keyseq> keys. Doing so will also move you through the list of changed files as the diff progresses.</p>
+        </note>
+       </item>
+     </list>
+    
+    
+
+</page>

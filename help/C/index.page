@@ -10,7 +10,7 @@
 
 <!--
     <copyright>
-      <year>2009</year>
+      <year>2010</year>
       <name>GNOME Documentation Project</name>
     </copyright>
 -->
@@ -19,6 +19,9 @@
 
   <title>Giggle Help</title>
 
+  <section id="views" style="2column">
+     <title>Working with <app>Giggle</app></title>
+  </section>
   <section id="basics" style="2column">
     <title>Working with GIT repositories</title>
   </section>
