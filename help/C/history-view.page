@@ -20,12 +20,12 @@
 -->
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
   </info>
-
   <title>History view</title>
+  <section id="overview">
+   <title>Overview</title>
    <figure>
-    <title>History view set up</title>
     <desc>Giggle in History view mode</desc>
-    <media type="image" src="figures/giggle-main_window_sections.png"/>
+    <media type="image" src="figures/giggle-history_view_sections.png" alt="Giggle main window in History mode"/>
    </figure>
     <p><app>Giggle</app>'s history view is set up in three main parts: </p>
      <list type="numbered">
@@ -45,7 +45,5 @@
         </note>
        </item>
      </list>
-    
-    
-
+    </section>
 </page>
