@@ -4,10 +4,16 @@ DOC_ID = giggle
 DOC_INCLUDES = legal.xml
 
 DOC_PAGES = \
+	browse-view.page \
+	history-view.page \
 	index.page \
-	introduction.page\
-	opening-repositories.page\
+	introduction.page \
+	opening-repositories.page \
 	tagging-commits.page
+
+DOC_FIGURES = \
+	figures/giggle-browse_view_sections.png \
+	figures/giggle-history_view_sections.png
 
 DOC_LINGUAS =
 dist-hook: doc-dist-hook
