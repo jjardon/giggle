@@ -1,13 +1,14 @@
 include $(top_srcdir)/gnome-doc-utils.make
 
 DOC_ID = giggle
-DOC_INCLUDES = legal.xml
+DOC_INCLUDES =
 
 DOC_PAGES = \
 	browse-view.page \
 	history-view.page \
 	index.page \
 	introduction.page \
+	license.page \
 	opening-repositories.page \
 	tagging-commits.page
 

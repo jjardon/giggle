@@ -18,7 +18,9 @@
       <name>GNOME Documentation Project</name>
     </copyright>
 -->
-    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
   </info>
 
   <title>Browse view</title>
