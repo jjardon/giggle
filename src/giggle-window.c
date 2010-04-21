@@ -944,11 +944,10 @@ window_action_about_cb (GtkAction    *action,
 		NULL
 	};
 
-	/*
 	const gchar *documenters[] = {
+		"Łukasz Jernaś",
 		NULL
 	};
-	*/
 
 	const gchar *copyright = _("Copyright © 2007 - 2008 Imendio AB\n"
 	                           "Copyright © 2008 - 2009 Mathias Hasselmann\n"
@@ -988,7 +987,7 @@ window_action_about_cb (GtkAction    *action,
 	                       "authors", authors,
 	                       "comments", _("A graphical frontend for Git"),
 			       "copyright", copyright,
-	                       /* "documenters", documenters, */
+	                       "documenters", documenters,
 	                       "license", license_translated,
 	                       "logo-icon-name", PACKAGE,
 	                       "title", _("About Giggle"),
