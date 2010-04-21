@@ -905,6 +905,13 @@ window_visit_uri (GiggleWindow *window,
 }
 
 static void
+window_action_help_index_cb (GtkAction    *action,
+                             GiggleWindow *window)
+{
+	window_visit_uri (window, "ghelp:" PACKAGE_TARNAME);
+}
+
+static void
 window_action_bug_report_cb (GtkAction    *action,
 			     GiggleWindow *window)
 {
@@ -1111,6 +1118,10 @@ window_create_ui_manager (GiggleWindow *window)
 		  G_CALLBACK (window_action_history_go_forward)
 		},
 
+		{ "HelpIndex", "help-contents", N_("_Contents"),
+		  "F1", N_("Show user guide for Giggle"),
+		  G_CALLBACK (window_action_help_index_cb)
+		},
 		{ "BugReport", NULL, N_("Report _Issue"),
 		  NULL, N_("Report an issue you've found in Giggle"),
 		  G_CALLBACK (window_action_bug_report_cb)
@@ -1183,6 +1194,8 @@ window_create_ui_manager (GiggleWindow *window)
 		"      <menuitem action='HistoryGoForward'/>"
 		"    </menu>"
 		"    <menu action='HelpMenu'>"
+		"      <menuitem action='HelpIndex'/>"
+		"      <separator/>"
 		"      <menuitem action='BugReport'/>"
 		"      <separator/>"
 		"      <menuitem action='About'/>"
