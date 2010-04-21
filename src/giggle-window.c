@@ -891,17 +891,16 @@ static void
 window_visit_uri (GiggleWindow *window,
 		  const char   *uri)
 {
-	GAppLaunchContext *context;
 	GError            *error = NULL;
 
-	context = giggle_create_app_launch_context (GTK_WIDGET (window));
+	gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (window)),
+	              uri,  gtk_get_current_event_time (),
+	              &error);
 
-	if (!g_app_info_launch_default_for_uri (uri, context, &error)) {
+	if (error != NULL) {
 		g_warning ("%s: %s", G_STRFUNC, error->message);
 		g_clear_error (&error);
 	}
-
-	g_object_unref (context);
 }
 
 static void
