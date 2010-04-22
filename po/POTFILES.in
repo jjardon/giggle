@@ -13,6 +13,7 @@ src/giggle-diff-tree-view.c
 src/giggle-diff-view.c
 src/giggle-diff-window.c
 src/giggle-file-list.c
+src/giggle-helpers.c
 src/giggle-main.c
 src/giggle-remote-editor.c
 src/giggle-remotes-view.c
