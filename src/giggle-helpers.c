@@ -163,31 +163,14 @@ giggle_ui_manager_get_action_group (GtkUIManager *manager,
 	return NULL;
 }
 
-GAppLaunchContext *
-giggle_create_app_launch_context (GtkWidget *widget)
-{
-	GdkAppLaunchContext *context;
-	GdkScreen           *screen = NULL;
-
-	context = gdk_app_launch_context_new ();
-
-	if (widget) {
-		screen = gtk_widget_get_screen (widget);
-		gdk_app_launch_context_set_screen (context, screen);
-	}
-
-	return G_APP_LAUNCH_CONTEXT (context);
-}
-
 void
-giggle_open_file_with_context (GAppLaunchContext *context,
-			       const char        *directory,
-			       const char        *filename)
+giggle_open_file (GtkWidget  *widget,
+                  const char *directory,
+                  const char *filename)
 {
 	GError *error = NULL;
 	char   *path, *uri;
 
-	g_return_if_fail (G_IS_APP_LAUNCH_CONTEXT (context));
 	g_return_if_fail (NULL != filename);
 
 	if (!directory)
@@ -198,23 +181,14 @@ giggle_open_file_with_context (GAppLaunchContext *context,
 	path = g_build_filename (directory, filename, NULL);
 	uri = g_filename_to_uri (path, NULL, &error);
 
-	if (!uri || !g_app_info_launch_default_for_uri (uri, context, &error)) {
+	gtk_show_uri (gtk_widget_get_screen (widget),
+	              uri,  gtk_get_current_event_time (),
+	              &error);
+	if (error != NULL) {
 		g_warning ("%s: %s", G_STRFUNC, error->message);
 		g_clear_error (&error);
 	}
 
 	g_free (path);
 	g_free (uri);
-}
-
-void
-giggle_open_file (GtkWidget  *widget,
-		  const char *directory,
-		  const char *filename)
-{
-	GAppLaunchContext *context;
-
-	context = giggle_create_app_launch_context (widget);
-	giggle_open_file_with_context (context, directory, filename);
-	g_object_unref (context);
 }
