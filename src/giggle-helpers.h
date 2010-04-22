@@ -40,6 +40,9 @@ void                giggle_open_file                      (GtkWidget         *wi
 							   const char        *directory,
 							   const char        *filename);
 
+void                giggle_error_dialog                   (GtkWindow         *window,
+                                                           GError            *error);
+
 G_END_DECLS
 
 #endif /* __GIGGLE_DUMMY_H__ */

@@ -898,7 +898,7 @@ window_visit_uri (GiggleWindow *window,
 	              &error);
 
 	if (error != NULL) {
-		g_warning ("%s: %s", G_STRFUNC, error->message);
+		giggle_error_dialog (GTK_WINDOW (window), error);
 		g_clear_error (&error);
 	}
 }

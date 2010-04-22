@@ -23,6 +23,8 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
+#include <glib/gi18n.h>
+
 #include "giggle-helpers.h"
 #include "libgiggle-git/giggle-git.h"
 
@@ -164,6 +166,24 @@ giggle_ui_manager_get_action_group (GtkUIManager *manager,
 }
 
 void
+giggle_error_dialog (GtkWindow *window,
+                     GError    *error)
+{
+	GtkWidget *widget;
+
+	widget = gtk_message_dialog_new (window,
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_CLOSE,
+	                                 "%s", _("An error ocurred:"));
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (widget),
+	                                          "%s", error->message);
+
+	gtk_dialog_run (GTK_DIALOG (widget));
+	gtk_widget_destroy (widget);
+}
+
+void
 giggle_open_file (GtkWidget  *widget,
                   const char *directory,
                   const char *filename)
@@ -185,7 +205,7 @@ giggle_open_file (GtkWidget  *widget,
 	              uri,  gtk_get_current_event_time (),
 	              &error);
 	if (error != NULL) {
-		g_warning ("%s: %s", G_STRFUNC, error->message);
+		giggle_error_dialog (GTK_WINDOW (widget), error);
 		g_clear_error (&error);
 	}
 
