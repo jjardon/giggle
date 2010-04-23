@@ -391,6 +391,7 @@ revision_view_update_branches_label (GiggleRevisionView *view)
 	GiggleRef              *ref;
 	GList                  *branches;
 	GString                *str;
+	gchar                  *escaped_string;
 
 	priv = GET_PRIV (view);
 
@@ -410,8 +411,11 @@ revision_view_update_branches_label (GiggleRevisionView *view)
 
 			if (str->len)
 				g_string_append (str, ", ");
-				
-			g_string_append (str, giggle_ref_get_name (ref));
+
+			escaped_string = g_markup_escape_text (giggle_ref_get_name (ref), -1);
+			g_string_append (str, escaped_string);
+			g_free (escaped_string);
+
 			branches = branches->next;
 		}
 
