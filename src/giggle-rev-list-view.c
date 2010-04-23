@@ -464,6 +464,7 @@ revision_tooltip_add_refs (GString  *str,
 			   GList    *list)
 {
 	GiggleRef *ref;
+	gchar     *escaped_string;
 
 	if (str->len > 0 && list)
 		g_string_append (str, "\n");
@@ -472,8 +473,10 @@ revision_tooltip_add_refs (GString  *str,
 		ref = list->data;
 		list = list->next;
 
+		escaped_string = g_markup_escape_text (giggle_ref_get_name (ref), -1);
 		g_string_append_printf (str, "<b>%s</b>: %s", label,
-					giggle_ref_get_name (ref));
+		                        escaped_string);
+		g_free (escaped_string);
 
 		if (list)
 			g_string_append (str, "\n");
