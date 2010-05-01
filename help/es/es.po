@@ -1,0 +1,393 @@
+# translation of giggle.help.master.po to Español
+# Spanish translation for giggle.
+# Copyright (C) 2010 giggle's COPYRIGHT HOLDER
+# This file is distributed under the same license as the giggle package.
+# Jorge González <jorgegonz@svn.gnome.org>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: giggle.help.master\n"
+"POT-Creation-Date: 2010-04-25 08:54+0000\n"
+"PO-Revision-Date: 2010-05-01 13:34+0200\n"
+"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: C/tagging-commits.page:6(desc) C/tagging-commits.page:26(title)
+msgid "Tagging commits"
+msgstr "Etiquetar «commits»"
+
+#: C/tagging-commits.page:11(name) C/opening-repositories.page:11(name)
+#: C/introduction.page:11(name) C/index.page:7(name)
+#: C/history-view.page:11(name) C/browse-view.page:11(name)
+msgid "Łukasz Jernaś"
+msgstr "Łukasz Jernaś"
+
+#: C/tagging-commits.page:12(email) C/opening-repositories.page:12(email)
+#: C/introduction.page:12(email) C/index.page:8(email)
+#: C/history-view.page:12(email) C/browse-view.page:12(email)
+msgid "deejay1@srem.org"
+msgstr "deejay1@srem.org"
+
+#: C/tagging-commits.page:22(p) C/opening-repositories.page:22(p)
+#: C/introduction.page:22(p) C/index.page:18(p) C/history-view.page:22(p)
+#: C/browse-view.page:22(p)
+msgid "Creative Commons Share Alike 3.0"
+msgstr "Creative Commons Share Alike 3.0"
+
+#: C/tagging-commits.page:27(p)
+msgid ""
+"To make a new tag open the context menu by right clicking on a commit in the "
+"revision window (it doesn't matter if it's the Browse or History view), then "
+"click <gui>Create tag</gui> and enter a name in the just opened dialog "
+"window."
+msgstr ""
+
+#: C/tagging-commits.page:28(p)
+msgid ""
+"You will notice that near the revision you have selected a new icon has "
+"appeared - it's your newly created tag."
+msgstr ""
+
+#: C/opening-repositories.page:6(desc)
+msgid "Opening GIT repositories"
+msgstr "Abrir repositorios GIT"
+
+#: C/opening-repositories.page:26(title)
+msgid "Opening a repository"
+msgstr "Abrir un repositorio"
+
+#: C/opening-repositories.page:27(p)
+msgid "You can open a git repository in the following ways:"
+msgstr "Puede abrir un repositorio GIT de las siguientes formas:"
+
+#: C/opening-repositories.page:30(p)
+msgid ""
+"using <guiseq><gui>Project</gui><gui>Open</gui></guiseq>, and selecting the "
+"directory with your repository,"
+msgstr ""
+
+#: C/opening-repositories.page:33(p)
+msgid "running <cmd>giggle</cmd> in your project's directory,"
+msgstr ""
+
+#: C/opening-repositories.page:36(p)
+msgid ""
+"running <cmd>giggle</cmd> with the repository path specified as an argument."
+msgstr ""
+
+#: C/license.page:7(desc)
+msgid "Legal information."
+msgstr "Información legal."
+
+#: C/license.page:10(title)
+msgid "License"
+msgstr "Licencia"
+
+#: C/license.page:11(p)
+msgid ""
+"This work is distributed under a CreativeCommons Attribution-Share Alike 3.0 "
+"Unported license."
+msgstr ""
+"Este trabajo está licenciado bajo una Licencia Creative Commons Atribución - "
+"Compartir igual 3.0 sin soporte."
+
+#: C/license.page:19(p)
+msgid "You are free:"
+msgstr "Es libre de:"
+
+#: C/license.page:24(em)
+msgid "To share"
+msgstr "Compartir"
+
+#: C/license.page:25(p)
+msgid "To copy, distribute and transmit the work."
+msgstr "Copiar, distribuir y comunicar públicamente la obra"
+
+#: C/license.page:28(em)
+msgid "To remix"
+msgstr "Hacer obras derivadas"
+
+#: C/license.page:29(p)
+msgid "To adapt the work."
+msgstr "Adaptar el trabajo."
+
+#: C/license.page:32(p)
+msgid "Under the following conditions:"
+msgstr "Bajo las siguientes condiciones:"
+
+#: C/license.page:37(em)
+msgid "Attribution"
+msgstr "Atribución"
+
+#: C/license.page:38(p)
+msgid ""
+"You must attribute the work in the manner specified by the author or "
+"licensor (but not in any way that suggests that they endorse you or your use "
+"of the work)."
+msgstr ""
+"Debe reconocer los créditos de la obra de la manera especificada por el "
+"autor o el licenciador (pero no de una manera que sugiera que tiene su apoyo "
+"o apoyan el uso que hace de su obra)."
+
+#: C/license.page:45(em)
+msgid "Share Alike"
+msgstr "Compartir igual"
+
+#: C/license.page:46(p)
+msgid ""
+"If you alter, transform, or build upon this work, you may distribute the "
+"resulting work only under the same, similar or a compatible license."
+msgstr ""
+"Si transforma o modifica esta obra para crear una obra derivada, sólo puede "
+"distribuir la obra resultante bajo la misma licencia, una de similar o una "
+"de compatible."
+
+#: C/license.page:52(p)
+msgid ""
+"For the full text of the license, see the <link href=\"http://"
+"creativecommons.org/licenses/by-sa/3.0/legalcode\">CreativeCommons website</"
+"link>, or read the full <link href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\">Commons Deed</link>."
+msgstr ""
+"Para ver el texto completo de la licencia consulte la <link href=\"http://"
+"creativecommons.org/licenses/by-sa/3.0/legalcode/\">página web de Creative "
+"Commons</link> o lea el<link href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\">Escrito de Commons</link>."
+
+#: C/introduction.page:6(desc)
+msgid "Introduction to the <app>Giggle</app> GIT repository viewer"
+msgstr ""
+
+#: C/introduction.page:26(title)
+msgid "Introduction"
+msgstr "Introducción"
+
+#: C/introduction.page:27(p)
+msgid ""
+"The <app>Giggle</app> application enables you to graphically browse and "
+"manipulate the contents of a git directory tree."
+msgstr ""
+
+#: C/introduction.page:30(title)
+msgid "Starting <app>giggle</app>"
+msgstr "Iniciar <app>giggle</app>"
+
+#: C/introduction.page:31(p)
+msgid "You can start <app>giggle</app> in the following ways:"
+msgstr ""
+
+#: C/introduction.page:34(p)
+msgid ""
+"Choose <guiseq><gui>Programming</gui><gui>Giggle</gui></guiseq> from the "
+"<gui>Applications</gui> menu."
+msgstr ""
+
+#: C/introduction.page:37(p)
+msgid ""
+"Run <cmd>giggle</cmd> at the prompt in a terminal such or from the <gui>Run "
+"Application</gui> dialog."
+msgstr ""
+
+#: C/introduction.page:43(title)
+msgid "Closing <app>giggle</app>"
+msgstr ""
+
+#: C/introduction.page:44(p)
+msgid ""
+"To close <app>giggle</app> choose <guiseq><gui>Project</gui><gui>Quit</gui></"
+"guiseq>, or press <keyseq><key>Ctrl</key><key>Q</key></keyseq>."
+msgstr ""
+
+#: C/index.page:22(title)
+msgid "Giggle Help"
+msgstr "Ayuda de Giggle"
+
+#: C/index.page:25(title)
+msgid "Working with <app>Giggle</app>"
+msgstr "Trabajar con <app>Giggle</app>"
+
+#: C/index.page:28(title)
+msgid "Working with GIT repositories"
+msgstr "Trabajar con repositorios GIT"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/history-view.page:30(None)
+msgid ""
+"@@image: 'figures/giggle-history_view_sections.png'; "
+"md5=3b487583a028a4d087e3d6a5bcd589b8"
+msgstr ""
+"@@image: 'figures/giggle-history_view_sections.png'; "
+"md5=3b487583a028a4d087e3d6a5bcd589b8"
+
+#: C/history-view.page:6(desc)
+msgid "Viewing the history of a repository"
+msgstr ""
+
+#: C/history-view.page:25(title)
+msgid "History view"
+msgstr "Vista del histórico"
+
+#: C/history-view.page:27(title) C/browse-view.page:28(title)
+msgid "Overview"
+msgstr "Vista general"
+
+#: C/history-view.page:29(desc)
+msgid "Giggle in History view mode"
+msgstr ""
+
+#: C/history-view.page:32(p)
+msgid "<app>Giggle</app>'s history view is set up in three main parts:"
+msgstr ""
+
+#: C/history-view.page:35(p) C/browse-view.page:44(p)
+msgid "History graph"
+msgstr ""
+
+#: C/history-view.page:36(p)
+msgid ""
+"Displays a visual representation of the current repository history, "
+"including all the branches be it remote or local. By hovering the mouse "
+"cursor over the icons you can display additional information, such as branch "
+"and tag names. Moving through history is accomplished either by using the "
+"mouse or the <key>Up</key> and <key>Down</key> keys."
+msgstr ""
+
+#: C/history-view.page:39(p)
+msgid "Changed files"
+msgstr "Archivos cambiados"
+
+#: C/history-view.page:40(p)
+msgid "Displays files changed in the currently selected revision"
+msgstr ""
+
+#: C/history-view.page:43(p)
+msgid "Diff"
+msgstr "Diff"
+
+#: C/history-view.page:44(p)
+msgid "Displays the differences for the selected file and revision."
+msgstr "Muestra las diferencias para el archivo seleccionado y la revisión."
+
+#: C/history-view.page:46(p)
+msgid ""
+"<app>Giggle</app> displays the differences as individual chunks, you can "
+"move between them either by using the Up and Down icons above the list of "
+"changed files, or by pressing <keyseq><key>Alt</key><key>Up</key></keyseq> "
+"and <keyseq><key>Alt</key><key>Down</key></keyseq> keys. Doing so will also "
+"move you through the list of changed files as the diff progresses."
+msgstr ""
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/browse-view.page:31(None)
+msgid ""
+"@@image: 'figures/giggle-browse_view_sections.png'; "
+"md5=390225c079a94ec75fd1c172f90c6b3c"
+msgstr ""
+"@@image: 'figures/giggle-browse_view_sections.png'; "
+"md5=390225c079a94ec75fd1c172f90c6b3c"
+
+#: C/browse-view.page:6(desc)
+msgid "Viewing the contents of the repository"
+msgstr ""
+
+#: C/browse-view.page:26(title)
+msgid "Browse view"
+msgstr ""
+
+#: C/browse-view.page:30(desc)
+msgid "Giggle in Browse view mode"
+msgstr ""
+
+#: C/browse-view.page:33(p)
+msgid "<app>Giggle</app>'s browse view is set up in three main parts:"
+msgstr ""
+
+#: C/browse-view.page:36(p)
+msgid "Project tree"
+msgstr "Árbol del proyecto"
+
+#: C/browse-view.page:37(p)
+msgid "Displays all the files included in the current repository."
+msgstr ""
+
+#: C/browse-view.page:40(p)
+msgid "File preview"
+msgstr "Vista previa de archivo"
+
+#: C/browse-view.page:41(p)
+msgid ""
+"Displays the contents of the currently selected file according as of the "
+"selected revision."
+msgstr ""
+
+#: C/browse-view.page:45(p)
+msgid ""
+"Displays a visual representation of the currently selected file's history"
+msgstr ""
+"Muestra una representación visual del histórico del archivo seleccionado "
+"actualmente"
+
+#: C/browse-view.page:50(title)
+msgid "About the Project tree"
+msgstr "Acerca del árbol del proyecto"
+
+#: C/browse-view.page:51(p)
+msgid ""
+"The Project tree is a powerful part of Giggle's interface, of course if you "
+"know about it. By default it doesn't display files hidden by <file>."
+"gitignore</file>. You can change this behaviour by using the right-click "
+"context menu option <gui>Show all files</gui>. Files which are not part of "
+"your repository are greyed out."
+msgstr ""
+
+#: C/browse-view.page:52(p)
+msgid "The Project tree offers you the following:"
+msgstr ""
+
+#: C/browse-view.page:55(p)
+msgid "Adding files to the repository."
+msgstr "Añadir archivos al repositorio."
+
+#: C/browse-view.page:56(p)
+msgid "By using the <gui>Add file to repository</gui> context menu option."
+msgstr ""
+
+#: C/browse-view.page:59(p)
+msgid "Adding/removing files to <file>.gitignore</file>."
+msgstr "Añadir quitar archivos a <file>.gitignore</file>."
+
+#: C/browse-view.page:60(p)
+msgid ""
+"By using the <gui>Add to .gitignore</gui> or <gui>Remove from .gitignore</"
+"gui> context menu options."
+msgstr ""
+
+#: C/browse-view.page:63(p)
+msgid "Editing files"
+msgstr "Editar archivos"
+
+#: C/browse-view.page:66(p)
+msgid "Committing"
+msgstr "Efectuar «commits»"
+
+#: C/browse-view.page:69(p)
+msgid "Creating patches"
+msgstr "Crear parches"
+
+#: C/browse-view.page:70(p)
+msgid ""
+"When there are any unstaged changes in the file list, you can create a patch "
+"by using the <gui>Create patch</gui> context menu option."
+msgstr ""
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: C/index.page:0(None)
+msgid "translator-credits"
+msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2007-2008."
