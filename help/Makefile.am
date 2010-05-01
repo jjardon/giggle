@@ -16,5 +16,5 @@ DOC_FIGURES = \
 	figures/giggle-browse_view_sections.png \
 	figures/giggle-history_view_sections.png
 
-DOC_LINGUAS = es
+DOC_LINGUAS = de es
 dist-hook: doc-dist-hook
