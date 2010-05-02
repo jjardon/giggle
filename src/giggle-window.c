@@ -1595,7 +1595,7 @@ window_directory_changed_cb (GiggleGit    *git,
 static void
 window_recent_repositories_add (GiggleWindow *window)
 {
-	static gchar     *groups[] = { PACKAGE, NULL };
+	static const gchar *groups[] = { PACKAGE, NULL };
 	GiggleWindowPriv *priv;
 	GtkRecentData     data = { 0, };
 	const gchar      *repository;
@@ -1612,8 +1612,8 @@ window_recent_repositories_add (GiggleWindow *window)
 	g_return_if_fail (repository != NULL);
 
 	data.display_name = (gchar *) giggle_git_get_project_name (priv->git);
-	data.groups = groups;
-	data.mime_type = "x-directory/normal";
+	data.groups = (gchar **) groups;
+	data.mime_type = g_strdup ("x-directory/normal");
 	data.app_name = (gchar *) g_get_application_name ();
 	data.app_exec = g_strjoin (" ", g_get_prgname (), "%u", NULL);
 
@@ -1621,6 +1621,7 @@ window_recent_repositories_add (GiggleWindow *window)
 	gtk_recent_manager_add_full (priv->recent_manager,
                                      tmp_string, &data);
 	g_free (tmp_string);
+	g_free (data.mime_type);
 	g_free (data.app_exec);
 }
 

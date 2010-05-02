@@ -262,7 +262,7 @@ git_verify_directory (const gchar  *directory,
 		      GError      **error)
 {
 	/* Do some funky stuff to verify that it's a valid GIT repo */
-	gchar   *argv[] = { GIT_COMMAND, "rev-parse", "--git-dir", NULL };
+	const gchar *argv[] = { GIT_COMMAND, "rev-parse", "--git-dir", NULL };
 	gchar   *std_out = NULL;
 	gchar   *std_err = NULL;
 	gint     exit_code = 0;
@@ -273,7 +273,7 @@ git_verify_directory (const gchar  *directory,
 		*git_dir = NULL;
 	}
 
-	g_spawn_sync (directory, argv, NULL,
+	g_spawn_sync (directory, (gchar **) argv, NULL,
 		      0, NULL, NULL,
 		      &std_out, &std_err,
 		      &exit_code, &local_error);
