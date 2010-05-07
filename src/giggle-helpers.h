@@ -43,6 +43,8 @@ void                giggle_open_file                      (GtkWidget         *wi
 void                giggle_error_dialog                   (GtkWindow         *window,
                                                            GError            *error);
 
+void                giggle_remove_directory_recursive     (const gchar       *uri);
+
 G_END_DECLS
 
 #endif /* __GIGGLE_DUMMY_H__ */

@@ -212,3 +212,68 @@ giggle_open_file (GtkWidget  *widget,
 	g_free (path);
 	g_free (uri);
 }
+
+static gboolean
+delete_directory_recursive (GFile *dir, GError **error)
+{
+	gchar *uri;
+	GFileEnumerator *file_enum;
+	GFileInfo *info;
+	gboolean _failure = FALSE;
+
+	if (error != NULL)
+		*error = NULL;
+
+	file_enum = g_file_enumerate_children (dir,
+					       G_FILE_ATTRIBUTE_STANDARD_NAME ","
+					       G_FILE_ATTRIBUTE_STANDARD_TYPE,
+					       G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS, NULL, error);
+
+	uri = g_file_get_uri (dir);
+	while (! _failure &&
+               (info = g_file_enumerator_next_file (file_enum, NULL, error))) {
+		gchar *child_uri;
+		GFile *child;
+
+		child_uri = g_build_filename (uri, g_file_info_get_name (info), NULL);
+		child = g_file_new_for_uri (child_uri);
+		g_free (child_uri);
+
+		switch (g_file_info_get_file_type (info)) {
+		case G_FILE_TYPE_DIRECTORY:
+			if (! delete_directory_recursive (child, error))
+				_failure = TRUE;
+			break;
+		default:
+			if (! g_file_delete (child, NULL, error))
+				_failure = TRUE;
+			break;
+		}
+
+		g_object_unref (child);
+		g_object_unref (info);
+	}
+	if (file_enum)
+		g_object_unref (file_enum);
+	g_free (uri);
+
+	if (! _failure && ! g_file_delete (dir, NULL, error))
+		_failure = TRUE;
+
+	return !_failure;
+}
+
+void
+giggle_remove_directory_recursive (const gchar *path)
+{
+	GFile *dir;
+	GError *error = NULL;
+
+	dir = g_file_new_for_path (path);
+	delete_directory_recursive (dir, &error);
+	if (error) {
+		g_warning ("Cannot delete %s: %s", path, error->message);
+		g_error_free (error);
+	}
+	g_object_unref (dir);
+}
