@@ -10,6 +10,7 @@ plugins/giggle-view-terminal.c
 src/eggfindbar.c
 src/giggle-authors-view.c
 src/giggle-branches-view.c
+src/giggle-clone-dialog.c
 src/giggle-diff-tree-view.c
 src/giggle-diff-view.c
 src/giggle-diff-window.c
