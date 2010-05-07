@@ -1,4 +1,5 @@
 data/giggle.desktop.in
+data/giggle.schemas.in
 [type: gettext/glade]data/main-window.ui
 libgiggle/giggle-plugin.c
 [type: gettext/glade]plugins/hello-world.xml

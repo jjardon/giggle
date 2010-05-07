@@ -154,6 +154,15 @@ AC_SUBST(PLATFORM_CFLAGS)
 AC_SUBST(PLATFORM_LDFLAGS)
 
 
+dnl  --------------------------------------
+dnl | GConftool detection for url-handlers |-------------------
+dnl  --------------------------------------
+AC_PATH_PROG([GCONFTOOL], [gconftool-2], [no])
+if test "x$GCONFTOOL" != xno; then
+   AM_GCONF_SOURCE_2
+fi
+
+
 dnl  -----------------------
 dnl | GIT command detection |----------------------------------
 dnl  -----------------------
