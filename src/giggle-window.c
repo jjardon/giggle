@@ -24,6 +24,7 @@
 #include "giggle-window.h"
 
 #include "eggfindbar.h"
+#include "giggle-clone-dialog.h"
 #include "giggle-diff-window.h"
 #include "giggle-helpers.h"
 #include "giggle-view-file.h"
@@ -708,6 +709,23 @@ window_action_open_cb (GtkAction    *action,
 }
 
 static void
+window_action_clone_cb (GtkAction    *action,
+		       GiggleWindow *window)
+{
+	GtkWidget *clone_dialog;
+
+	clone_dialog = giggle_clone_dialog_new (NULL, NULL);
+	gtk_window_set_transient_for (GTK_WINDOW (clone_dialog),
+	                              GTK_WINDOW (window));
+	if (gtk_dialog_run (GTK_DIALOG (clone_dialog)) == GTK_RESPONSE_ACCEPT)
+		giggle_window_set_directory (window,
+				giggle_clone_dialog_get_directory (
+					GIGGLE_CLONE_DIALOG (clone_dialog)
+				));
+	gtk_widget_destroy (clone_dialog);
+}
+
+static void
 window_action_properties_cb (GtkAction    *action,
 		             GiggleWindow *window)
 {
@@ -1079,6 +1097,10 @@ window_create_ui_manager (GiggleWindow *window)
 		  NULL, N_("Open a git repository"),
 		  G_CALLBACK (window_action_open_cb)
 		},
+		{ "Clone", NULL,
+		  N_("Clone _location"), "<control>L", N_("Clone a location"),
+		  G_CALLBACK (window_action_clone_cb)
+		},
 #if 0
 		{ "SavePatch", GTK_STOCK_SAVE,
 		  N_("_Save patch"), "<control>S", N_("Save a patch"),
@@ -1153,6 +1175,7 @@ window_create_ui_manager (GiggleWindow *window)
 		"  <menubar name='MainMenubar'>"
 		"    <menu action='ProjectMenu'>"
 		"      <menuitem action='Open'/>"
+		"      <menuitem action='Clone'/>"
 #if 0
 		"      <menuitem action='SavePatch'/>"
 		"      <menuitem action='Diff'/>"
