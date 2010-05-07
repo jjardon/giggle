@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<gconfschemafile>
+  <schemalist>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/git/command</key>
+      <applyto>/desktop/gnome/url-handlers/git/command</applyto>
+      <owner>giggle</owner>
+      <type>string</type>
+      <default>giggle --clone %s</default>
+      <locale name="C">
+        <short>The handler for "git://" URLs</short>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/git/enabled</key>
+      <applyto>/desktop/gnome/url-handlers/git/enabled</applyto>
+      <owner>giggle</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Set it at TRUE if you want it activated</short>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/git/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/git/needs_terminal</applyto>
+      <owner>giggle</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Run Giggle in a terminal?</short>
+      </locale>
+    </schema>
+  </schemalist>
+</gconfschemafile>
