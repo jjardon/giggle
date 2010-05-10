@@ -39,7 +39,7 @@ entry_has_input (GtkWidget *entry)
 static gboolean
 input_is_valid (GiggleCloneDialog *dialog)
 {
-	gboolean is_valid;
+	gboolean is_valid = FALSE;
 
 	is_valid = entry_has_input (dialog->priv->remote_entry) &&
 	           entry_has_input (dialog->priv->local_entry);
@@ -141,6 +141,20 @@ clone_repository_finished (GiggleGit *git,
 }
 
 static void
+warning_dialog (GtkWindow *parent)
+{
+	GtkWidget *widget;
+
+	widget = gtk_message_dialog_new (parent,
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_CLOSE,
+	                                 "You must fill out both fields of dialogue");
+	gtk_dialog_run (GTK_DIALOG (widget));
+	gtk_widget_destroy (widget);
+}
+
+static void
 clone_repository (GiggleCloneDialog *dialog, GtkButton *button)
 {
 	GiggleJob *job;
@@ -148,7 +162,10 @@ clone_repository (GiggleCloneDialog *dialog, GtkButton *button)
 	const gchar  *repo, *name;
 	gchar *base;
 
-	g_assert (input_is_valid (dialog));
+	if (input_is_valid (dialog) == FALSE) {
+		warning_dialog (GTK_WINDOW (dialog));
+		return;
+	}
 
 	gtk_widget_set_sensitive (GTK_WIDGET (button), FALSE);
 	gtk_widget_set_sensitive (dialog->priv->remote_entry, FALSE);
