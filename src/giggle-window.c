@@ -1673,22 +1673,6 @@ window_plugin_added_cb (GigglePluginManager *manager,
 }
 
 static void
-about_activate_link (GtkAboutDialog *about,
-                     const char     *uri,
-                     gpointer        data)
-{
-	window_visit_uri (data, uri);
-}
-
-static void
-button_activate_link (GtkLinkButton *button,
-                      const char    *uri,
-                      gpointer       data)
-{
-	window_visit_uri (data, uri);
-}
-
-static void
 giggle_window_init (GiggleWindow *window)
 {
 	GiggleWindowPriv *priv;
@@ -1756,9 +1740,6 @@ giggle_window_init (GiggleWindow *window)
 
 	g_signal_connect (priv->plugin_manager, "plugin-added",
 			  G_CALLBACK (window_plugin_added_cb), window);
-
-	gtk_about_dialog_set_url_hook (about_activate_link, window, NULL);
-	gtk_link_button_set_uri_hook (button_activate_link, window, NULL);
 
 	window_update_search_ui (window);
 	window_history_update_ui (window);
