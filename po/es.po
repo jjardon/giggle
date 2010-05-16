@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: giggle VERSION\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=giggle\n"
-"POT-Creation-Date: 2010-05-10 17:19+0000\n"
-"PO-Revision-Date: 2010-05-10 23:26+0200\n"
+"POT-Creation-Date: 2010-05-15 18:18+0000\n"
+"PO-Revision-Date: 2010-05-16 10:57+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,9 +39,9 @@ msgstr "Establecer a CIERTO si lo quiere activado"
 msgid "The handler for \"git://\" URLs"
 msgstr "El manejador para URL «git://»"
 
-#: ../data/main-window.ui.h:1
-msgid "<b>Branches</b>"
-msgstr "<b>Ramas de desarrollo</b>"
+#: ../data/main-window.ui.h:1 ../src/giggle-remote-editor.c:174
+msgid "Branches"
+msgstr "Ramas de desarrollo"
 
 #: ../data/main-window.ui.h:2
 msgid "Name:"
@@ -169,29 +169,27 @@ msgstr ""
 msgid "Branches:"
 msgstr "Ramas de desarrollo:"
 
-#: ../src/giggle-clone-dialog.c:221
-#| msgid "Select git repository"
+#: ../src/giggle-clone-dialog.c:238
 msgid "Clone Repository"
 msgstr "Clonar repositorio"
 
-#: ../src/giggle-clone-dialog.c:230
+#: ../src/giggle-clone-dialog.c:247
 msgid "Cl_one"
 msgstr "Cl_onar"
 
-#: ../src/giggle-clone-dialog.c:254
-#| msgid "_History"
+#: ../src/giggle-clone-dialog.c:271
 msgid "_Repository:"
 msgstr "_Repositorio:"
 
-#: ../src/giggle-clone-dialog.c:262
+#: ../src/giggle-clone-dialog.c:279
 msgid "_Local name:"
 msgstr "Nombre _local:"
 
-#: ../src/giggle-clone-dialog.c:267
+#: ../src/giggle-clone-dialog.c:284
 msgid "Please select a location for the clone"
 msgstr "Seleccionar una ubicación para el clon"
 
-#: ../src/giggle-clone-dialog.c:270
+#: ../src/giggle-clone-dialog.c:287
 msgid "Clone in _folder:"
 msgstr "Clonar en c_arpeta:"
 
@@ -336,7 +334,6 @@ msgid "An error ocurred:"
 msgstr "Ocurrió un error:"
 
 #: ../src/giggle-main.c:38
-#| msgid "Select git repository"
 msgid "Clone a repository"
 msgstr "Clonar un repositorio"
 
@@ -374,10 +371,6 @@ msgstr "Teclee «%s --help» para obtener más información.\n"
 #: ../src/giggle-remote-editor.c:148
 msgid "Click to add mapping..."
 msgstr "Pulse para añadir un «mapping»…"
-
-#: ../src/giggle-remote-editor.c:174
-msgid "Branches"
-msgstr "Ramas de desarrollo"
 
 #: ../src/giggle-remote-editor.c:375
 msgid "Unnamed"
@@ -612,27 +605,29 @@ msgstr "_Histórico"
 msgid "Browse the history of this project"
 msgstr "Explorar la historia de este proyecto"
 
-#: ../src/giggle-view-summary.c:117
-msgid "<b>Description:</b>"
-msgstr "<b>Descripción:</b>"
+#: ../src/giggle-view-summary.c:118
+#| msgid "<b>Description:</b>"
+msgid "Description:"
+msgstr "Descripción:"
 
-#: ../src/giggle-view-summary.c:163
-msgid "<b>Remotes:</b>"
-msgstr "<b>Repositorios remotos:</b>"
+#: ../src/giggle-view-summary.c:167
+#| msgid "_Remotes"
+msgid "Remotes:"
+msgstr "Remotas:"
 
-#: ../src/giggle-view-summary.c:189
+#: ../src/giggle-view-summary.c:195
 msgid "_Summary"
 msgstr "_Sumario"
 
-#: ../src/giggle-view-summary.c:192
+#: ../src/giggle-view-summary.c:198
 msgid "_Branches"
 msgstr "_Ramas de desarrollo"
 
-#: ../src/giggle-view-summary.c:195
+#: ../src/giggle-view-summary.c:201
 msgid "_Authors"
 msgstr "_Autores"
 
-#: ../src/giggle-view-summary.c:198
+#: ../src/giggle-view-summary.c:204
 msgid "_Remotes"
 msgstr "Rep_ositorios remotos"
 
@@ -844,11 +839,11 @@ msgstr "Refrescar la vista actual"
 msgid "Search Inside _Patches"
 msgstr "Buscar dentro de los parc_hes"
 
-#: ../src/giggle-window.c:1788
+#: ../src/giggle-window.c:1769
 msgid "Save patch file"
 msgstr "Guardar parche"
 
-#: ../src/giggle-window.c:1808
+#: ../src/giggle-window.c:1789
 #, c-format
 msgid ""
 "An error occurred when saving to file:\n"
@@ -856,6 +851,12 @@ msgid ""
 msgstr ""
 "Ocurrió un error al guardar al archivo:\n"
 "%s"
+
+#~ msgid "<b>Branches</b>"
+#~ msgstr "<b>Ramas de desarrollo</b>"
+
+#~ msgid "<b>Remotes:</b>"
+#~ msgstr "<b>Repositorios remotos:</b>"
 
 #~ msgid "Visit _Homepage"
 #~ msgstr "Visitar página _WEB"
