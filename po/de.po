@@ -4,20 +4,19 @@
 # Sven Herzberg <sven@imendio.com>, 2007.
 # Mathias Hasselmann <hasselmm@gnome.org>, 2009.
 # Mario Blättermann <mariobl@gnome.org>, 2010.
-# Christian Kirbach <Christian.Kirbach@googlemail.com>, 2010.
-#
+# Christian Kirbach  <Christian.Kirbach@googlemail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: giggle 0.4.91\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=giggle\n"
-"POT-Creation-Date: 2010-05-07 16:10+0000\n"
-"PO-Revision-Date: 2010-05-08 23:52+0100\n"
-"Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-18 13:37+0200\n"
+"PO-Revision-Date: 2010-05-17 17:47+0200\n"
+"Last-Translator: Christian Kirbach  <Christian.Kirbach@googlemail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 
@@ -41,9 +40,9 @@ msgstr "Auf »wahr« setzen, wenn Sie dies aktivieren wollen"
 msgid "The handler for \"git://\" URLs"
 msgstr "Der Handler für »git://«-Adressen"
 
-#: ../data/main-window.ui.h:1
-msgid "<b>Branches</b>"
-msgstr "<b>Zweige</b>"
+#: ../data/main-window.ui.h:1 ../src/giggle-remote-editor.c:174
+msgid "Branches"
+msgstr "Zweige"
 
 #: ../data/main-window.ui.h:2
 msgid "Name:"
@@ -169,6 +168,30 @@ msgstr ""
 #: ../src/giggle-branches-view.c:147 ../src/giggle-revision-view.c:209
 msgid "Branches:"
 msgstr "Zweige:"
+
+#: ../src/giggle-clone-dialog.c:238
+msgid "Clone Repository"
+msgstr "Softwarebestand klonen"
+
+#: ../src/giggle-clone-dialog.c:247
+msgid "Cl_one"
+msgstr "_Klonen"
+
+#: ../src/giggle-clone-dialog.c:271
+msgid "_Repository:"
+msgstr "Software_bestand:"
+
+#: ../src/giggle-clone-dialog.c:279
+msgid "_Local name:"
+msgstr "_Lokaler Name:"
+
+#: ../src/giggle-clone-dialog.c:284
+msgid "Please select a location for the clone"
+msgstr "Bitte wählen Sie einen Ort für das Klonen"
+
+#: ../src/giggle-clone-dialog.c:287
+msgid "Clone in _folder:"
+msgstr "Klonen in den _Ordner:"
 
 #: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1671
 #, c-format
@@ -306,7 +329,6 @@ msgid "An error ocurred:"
 msgstr "Ein Fehler ist aufgetreten:"
 
 #: ../src/giggle-main.c:38
-#| msgid "Select git repository"
 msgid "Clone a repository"
 msgstr "Einen Softwarebestand klonen"
 
@@ -344,10 +366,6 @@ msgstr "»%s --help« gibt weitere Informationen aus.\n"
 #: ../src/giggle-remote-editor.c:148
 msgid "Click to add mapping..."
 msgstr "Klicken, um Zuordnung hinzuzufügen …"
-
-#: ../src/giggle-remote-editor.c:174
-msgid "Branches"
-msgstr "Zweige"
 
 #: ../src/giggle-remote-editor.c:375
 msgid "Unnamed"
@@ -581,27 +599,27 @@ msgstr "_Verlauf"
 msgid "Browse the history of this project"
 msgstr "Den Verlauf des Projekts sichten"
 
-#: ../src/giggle-view-summary.c:117
-msgid "<b>Description:</b>"
-msgstr "<b>Beschreibung:</b>"
+#: ../src/giggle-view-summary.c:118
+msgid "Description:"
+msgstr "Beschreibung:"
 
-#: ../src/giggle-view-summary.c:163
-msgid "<b>Remotes:</b>"
-msgstr "<b>Entfernte Bestände:</b>"
+#: ../src/giggle-view-summary.c:167
+msgid "Remotes:"
+msgstr "Entfernte Bestände:"
 
-#: ../src/giggle-view-summary.c:189
+#: ../src/giggle-view-summary.c:195
 msgid "_Summary"
 msgstr "_Zusammenfassung"
 
-#: ../src/giggle-view-summary.c:192
+#: ../src/giggle-view-summary.c:198
 msgid "_Branches"
 msgstr "_Zweige"
 
-#: ../src/giggle-view-summary.c:195
+#: ../src/giggle-view-summary.c:201
 msgid "_Authors"
 msgstr "_Autoren"
 
-#: ../src/giggle-view-summary.c:198
+#: ../src/giggle-view-summary.c:204
 msgid "_Remotes"
 msgstr "Entfe_rnte Bestände"
 
@@ -639,10 +657,10 @@ msgstr ""
 
 #: ../src/giggle-window.c:974
 msgid ""
-"This program is free software; you can redistribute it and/or modify it under "
-"the terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version."
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
 msgstr ""
 "Dieses Programm ist freie Software. Sie können es unter den Bedingungen der "
 "GNU General Public License, wie von der Free Software Foundation "
@@ -652,9 +670,9 @@ msgstr ""
 #: ../src/giggle-window.c:978
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details."
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
 msgstr ""
 "Die Veröffentlichung von diesem Programm erfolgt in der Hoffnung, dass es "
 "Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die "
@@ -815,11 +833,11 @@ msgstr "Aktuelle Ansicht auffrischen"
 msgid "Search Inside _Patches"
 msgstr "_Patches durchsuchen"
 
-#: ../src/giggle-window.c:1788
+#: ../src/giggle-window.c:1769
 msgid "Save patch file"
 msgstr "Eine Patch-Datei speichern"
 
-#: ../src/giggle-window.c:1808
+#: ../src/giggle-window.c:1789
 #, c-format
 msgid ""
 "An error occurred when saving to file:\n"
@@ -827,6 +845,12 @@ msgid ""
 msgstr ""
 "Beim Speichern der Datei trat ein Fehler auf:\n"
 "%s"
+
+#~ msgid "<b>Branches</b>"
+#~ msgstr "<b>Zweige</b>"
+
+#~ msgid "<b>Remotes:</b>"
+#~ msgstr "<b>Entfernte Bestände:</b>"
 
 #~ msgid "Visit _Homepage"
 #~ msgstr "_Homepage besuchen"
