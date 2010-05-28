@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: giggle master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=giggle\n"
-"POT-Creation-Date: 2010-05-13 22:57+0000\n"
-"PO-Revision-Date: 2010-05-14 19:17+0100\n"
+"POT-Creation-Date: 2010-05-18 11:37+0000\n"
+"PO-Revision-Date: 2010-05-21 16:34+0100\n"
 "Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -41,8 +41,9 @@ msgid "The handler for \"git://\" URLs"
 msgstr "Upravljalnik URL-jev \"git://\""
 
 #: ../data/main-window.ui.h:1
-msgid "<b>Branches</b>"
-msgstr "<b>Veje</b>"
+#: ../src/giggle-remote-editor.c:174
+msgid "Branches"
+msgstr "Veje"
 
 #: ../data/main-window.ui.h:2
 msgid "Name:"
@@ -373,10 +374,6 @@ msgstr "Poskusite `%s --help` za več podrobnosti.\n"
 msgid "Click to add mapping..."
 msgstr "Kliknite za dodajanje preslikave ..."
 
-#: ../src/giggle-remote-editor.c:174
-msgid "Branches"
-msgstr "Veje"
-
 #: ../src/giggle-remote-editor.c:375
 msgid "Unnamed"
 msgstr "Neimenovano"
@@ -614,27 +611,27 @@ msgstr "_Zgodovina"
 msgid "Browse the history of this project"
 msgstr "Brskaj po zgodovini tega projekta"
 
-#: ../src/giggle-view-summary.c:117
-msgid "<b>Description:</b>"
-msgstr "<b>Opis:</b>"
+#: ../src/giggle-view-summary.c:118
+msgid "Description:"
+msgstr "Opis:"
 
-#: ../src/giggle-view-summary.c:163
-msgid "<b>Remotes:</b>"
-msgstr "<b>Oddaljena:</b>"
+#: ../src/giggle-view-summary.c:167
+msgid "Remotes:"
+msgstr "Oddaljena:"
 
-#: ../src/giggle-view-summary.c:189
+#: ../src/giggle-view-summary.c:195
 msgid "_Summary"
 msgstr "_Povzetek"
 
-#: ../src/giggle-view-summary.c:192
+#: ../src/giggle-view-summary.c:198
 msgid "_Branches"
 msgstr "_Veje"
 
-#: ../src/giggle-view-summary.c:195
+#: ../src/giggle-view-summary.c:201
 msgid "_Authors"
 msgstr "_Avtorji"
 
-#: ../src/giggle-view-summary.c:198
+#: ../src/giggle-view-summary.c:204
 msgid "_Remotes"
 msgstr "_Oddaljeno"
 
@@ -836,6 +833,10 @@ msgstr ""
 "Med shranjevanjem v datoteko je prišlo do napake:\n"
 "%s"
 
+#~ msgid "<b>Branches</b>"
+#~ msgstr "<b>Veje</b>"
+#~ msgid "<b>Remotes:</b>"
+#~ msgstr "<b>Oddaljena:</b>"
 #~ msgid "Visit _Homepage"
 #~ msgstr "Obišči _domačo stran"
 #~ msgid "Visit the homepage of Giggle"
