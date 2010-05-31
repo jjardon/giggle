@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: giggle master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-17 00:10+0200\n"
-"PO-Revision-Date: 2010-05-09 17:15+0100\n"
+"POT-Creation-Date: 2010-05-31 23:01+0200\n"
+"PO-Revision-Date: 2010-05-17 09:07+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -167,30 +167,28 @@ msgid "Branches:"
 msgstr "Větve:"
 
 #: ../src/giggle-clone-dialog.c:238
-#, fuzzy
 msgid "Clone Repository"
-msgstr "Klonovat repozitář"
+msgstr "Klonování repozitáře"
 
 #: ../src/giggle-clone-dialog.c:247
 msgid "Cl_one"
-msgstr ""
+msgstr "Kl_onovat"
 
 #: ../src/giggle-clone-dialog.c:271
-#, fuzzy
 msgid "_Repository:"
-msgstr "Klonovat repozitář"
+msgstr "_Repozitář:"
 
 #: ../src/giggle-clone-dialog.c:279
 msgid "_Local name:"
-msgstr ""
+msgstr "_Místní název:"
 
 #: ../src/giggle-clone-dialog.c:284
 msgid "Please select a location for the clone"
-msgstr ""
+msgstr "Vyberte prosím umístění pro kopii klonování"
 
 #: ../src/giggle-clone-dialog.c:287
 msgid "Clone in _folder:"
-msgstr ""
+msgstr "Klonovat ve _složce:"
 
 #: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1671
 #, c-format
@@ -598,14 +596,12 @@ msgid "Browse the history of this project"
 msgstr "Procházet historii tohoto projektu"
 
 #: ../src/giggle-view-summary.c:118
-#, fuzzy
 msgid "Description:"
-msgstr "<b>Popis:</b>"
+msgstr "Popis:"
 
 #: ../src/giggle-view-summary.c:167
-#, fuzzy
 msgid "Remotes:"
-msgstr "Vz_dálené"
+msgstr "Vzdálené:"
 
 #: ../src/giggle-view-summary.c:195
 msgid "_Summary"
