@@ -3,6 +3,7 @@ autom4te*
 config.*
 configure
 depcomp
+gnome-doc-utils.make
 install-sh
 libtool
 ltmain.sh
@@ -20,6 +21,8 @@ intltool-update.in
 mkinstalldirs
 .*.sw?
 *.o
+*.lo
+*.la
 .deps
 .libs
 .project

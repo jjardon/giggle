@@ -36,9 +36,12 @@ G_BEGIN_DECLS
 
 typedef struct _GiggleRevision      GiggleRevision;
 typedef struct _GiggleRevisionClass GiggleRevisionClass;
+typedef struct _GiggleRevisionPriv  GiggleRevisionPriv;
 
 struct _GiggleRevision {
 	GObject parent_instance;
+
+	GiggleRevisionPriv *priv;
 };
 
 struct _GiggleRevisionClass {

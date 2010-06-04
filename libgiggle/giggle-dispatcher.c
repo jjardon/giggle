@@ -186,6 +186,9 @@ dispatcher_start_job (GiggleDispatcher *dispatcher, DispatcherJob *job)
 
 	priv->channel = g_io_channel_unix_new (job->std_out);
 	g_io_channel_set_encoding (priv->channel, NULL, NULL);
+	g_io_channel_set_flags (priv->channel,
+	                        g_io_channel_get_flags (priv->channel)
+	                        | G_IO_FLAG_NONBLOCK, NULL);
 	priv->output = g_string_new ("");
 
 	priv->current_job = job;
@@ -356,16 +359,14 @@ dispatcher_job_read_cb (GIOChannel       *source,
 	GiggleDispatcherPriv *priv;
 	gsize                 length;
 	gchar                *str;
-	gint                  count = 0;
 	GIOStatus             status;
 	GError               *error = NULL;
 
 	priv = GET_PRIV (dispatcher);
 	status = G_IO_STATUS_NORMAL;
 
-	while (count < 10 && status == G_IO_STATUS_NORMAL) {
+	while (status == G_IO_STATUS_NORMAL) {
 		status = g_io_channel_read_line (source, &str, &length, NULL, &error);
-		count++;
 
 		if (str) {
 			g_string_append_len (priv->output, str, length);

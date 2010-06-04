@@ -70,27 +70,27 @@ libgiggle_la_LDFLAGS = \
 	$(NULL)
 
 giggle-enums.h: giggle-enums.h.in $(libgiggle_h_files)
-	( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbh
-	( cmp -s xgen-gtbh $@ || (echo "  ENUM  $@..."; cp xgen-gtbh $@ ))
-	( rm -f xgen-gtbh )
+	$(AM_V_at)( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbh
+	$(AM_V_at)( cmp -s xgen-gtbh $@ || (echo "  ENUM  $@..."; cp xgen-gtbh $@ ))
+	$(AM_V_at)( rm -f xgen-gtbh )
 
 giggle-enums.c: giggle-enums.c.in $(libgiggle_h_files)
-	( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbc
-	( cmp -s xgen-gtbc $@ || (echo "  ENUM  $@..."; cp xgen-gtbc $@ ))
-	( rm -f xgen-gtbc )
+	$(AM_V_at)( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbc
+	$(AM_V_at)( cmp -s xgen-gtbc $@ || (echo "  ENUM  $@..."; cp xgen-gtbc $@ ))
+	$(AM_V_at)( rm -f xgen-gtbc )
 
 giggle-marshal.h: giggle-marshal.list
-	( cd $(srcdir) && \
+	$(AM_V_at)( cd $(srcdir) && \
 	  $(GLIB_GENMARSHAL) --prefix=giggle_marshal $< --header ) > xgen-gmh
-	( cmp -s xgen-gmh $@ || (echo "  GENM  $@..."; cp xgen-gmh $@ ))
-	( rm -f xgen-gmh )
+	$(AM_V_at)( cmp -s xgen-gmh $@ || (echo "  GENM  $@..."; cp xgen-gmh $@ ))
+	$(AM_V_at)( rm -f xgen-gmh )
 
 giggle-marshal.c: giggle-marshal.list
-	( cd $(srcdir) && \
+	$(AM_V_at)( cd $(srcdir) && \
 	  echo "#include \"giggle-marshal.h\"" && \
 	  $(GLIB_GENMARSHAL) --prefix=giggle_marshal $< --body ) > xgen-gmc
-	( cmp -s xgen-gmc $@ || (echo "  GENM  $@..."; cp xgen-gmc $@ ))
-	( rm -f xgen-gmc )
+	$(AM_V_at)( cmp -s xgen-gmc $@ || (echo "  GENM  $@..."; cp xgen-gmc $@ ))
+	$(AM_V_at)( rm -f xgen-gmc )
 
 BUILT_SOURCES = \
 	giggle-marshal.h \

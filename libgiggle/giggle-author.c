@@ -68,6 +68,7 @@ author_set_string (GiggleAuthorPriv *priv,
 {
 	static GRegex *regex = NULL;
 	GMatchInfo    *match = NULL;
+	GError        *error = NULL;
 
 	g_free (priv->name);
 	g_free (priv->email);
@@ -78,13 +79,19 @@ author_set_string (GiggleAuthorPriv *priv,
 
 	if (G_UNLIKELY (!regex)) {
 		regex = g_regex_new ("^\\s*([^<]+?)?\\s*(?:<([^>]+)>)?\\s*$",
-				     G_REGEX_OPTIMIZE, 0, NULL);
+				     G_REGEX_OPTIMIZE | G_REGEX_RAW, 0, &error);
+		if (error) {
+			g_warning ("%s", error->message);
+			g_error_free (error);
+		}
 	}
 
 	if (g_regex_match (regex, priv->string, 0, &match)) {
 		priv->name  = g_match_info_fetch (match, 1);
 		priv->email = g_match_info_fetch (match, 2);
 	}
+	g_assert (priv->name != NULL);
+	g_assert (priv->email != NULL);
 
 	g_match_info_free (match);
 }

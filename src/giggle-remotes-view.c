@@ -134,7 +134,7 @@ remotes_view_icon_data_func (GtkTreeViewColumn *column,
 		g_object_unref (remote);
 	} else {
 		g_object_set (cell,
-			      "icon-name", "gtk-new",
+			      "icon-name", "document-new",
 			      NULL);
 	}
 }

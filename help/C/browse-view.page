@@ -1,0 +1,81 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="browse-view">
+  <info>
+    <link type="guide" xref="index#views"/>
+    <desc>
+      Viewing the contents of the repository
+    </desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  </info>
+
+  <title>Browse view</title>
+   <section id="overview">
+   <title>Overview</title>
+   <figure>
+    <desc>Giggle in Browse view mode</desc>
+    <media type="image" src="figures/giggle-browse_view_sections.png" alt="Giggle main window in Browse mode"/>
+   </figure>
+    <p><app>Giggle</app>'s browse view is set up in three main parts:</p>
+     <list type="numbered">
+       <item>
+        <p>Project tree</p>
+        <p>Displays all the files included in the current repository.</p>
+       </item>
+       <item>
+        <p>File preview</p>
+        <p>Displays the contents of the currently selected file according as of the selected revision.</p>
+       </item>
+       <item>
+        <p>History graph</p>
+        <p>Displays a visual representation of the currently selected file's history</p>
+       </item>
+     </list>
+    </section>
+    <section id="project_tree">
+    <title>About the Project tree</title>
+    <p>The Project tree is a powerful part of Giggle's interface, of course if you know about it. By default it doesn't display files hidden by <file>.gitignore</file>. You can change this behaviour by using the right-click context menu option <gui>Show all files</gui>. Files which are not part of your repository are greyed out.</p>
+    <p>The Project tree offers you the following:</p>
+     <list>
+       <item>
+        <p>Adding files to the repository.</p>
+        <p>By using the <gui>Add file to repository</gui> context menu option.</p>
+       </item>
+       <item>
+        <p>Adding/removing files to <file>.gitignore</file>.</p>
+        <p>By using the <gui>Add to .gitignore</gui> or <gui>Remove from .gitignore</gui> context menu options.</p>
+       </item>
+       <item>
+         <p>Editing files</p>
+       </item>
+       <item>
+         <p>Committing</p>
+       </item>
+       <item>
+         <p>Creating patches</p>
+         <p>When there are any unstaged changes in the file list, you can create a patch by using the <gui>Create patch</gui> context menu option.</p>
+       </item>
+     </list>
+
+    </section>
+<!-- FIXME: I don't really know what's going on in this section so somebody please fill in
+    <section id="file_preview">
+      <title>About the File preview</title>
+    </section>
+-->
+
+</page>

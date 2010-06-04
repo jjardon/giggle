@@ -33,14 +33,18 @@ G_BEGIN_DECLS
 #define GIGGLE_IS_GIT_REVISIONS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GIGGLE_TYPE_GIT_REVISIONS))
 #define GIGGLE_GIT_REVISIONS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GIGGLE_TYPE_GIT_REVISIONS, GiggleGitRevisionsClass))
 
-typedef struct GiggleGitRevisions      GiggleGitRevisions;
-typedef struct GiggleGitRevisionsClass GiggleGitRevisionsClass;
+typedef struct _GiggleGitRevisions      GiggleGitRevisions;
+typedef struct _GiggleGitRevisionsClass GiggleGitRevisionsClass;
+typedef struct _GiggleGitRevisionsPriv  GiggleGitRevisionsPriv;
 
-struct GiggleGitRevisions {
+struct _GiggleGitRevisions {
 	GiggleJob parent;
+
+	/* <private> */
+	GiggleGitRevisionsPriv *priv;
 };
 
-struct GiggleGitRevisionsClass {
+struct _GiggleGitRevisionsClass {
 	GiggleJobClass parent_class;
 };
 

@@ -140,10 +140,13 @@ remote_get_icon_name (GiggleRemotePriv *priv)
 		return "giggle-scm-svn";
 
 	case GIGGLE_REMOTE_MECHANISM_INVALID:
+		g_return_val_if_reached (NULL);
+		break;
+
+	default:
+		g_return_val_if_reached (NULL);
 		break;
 	}
-
-	g_return_val_if_reached (NULL);
 }
 
 static void
@@ -281,10 +284,13 @@ remote_get_config_prefix (GiggleRemoteMechanism mechanism)
 		return "svn-remote.";
 
 	case GIGGLE_REMOTE_MECHANISM_INVALID:
+		g_return_val_if_reached (NULL);
+		break;
+
+	default:
+		g_return_val_if_reached (NULL);
 		break;
 	}
-
-	g_return_val_if_reached (NULL);
 }
 
 void

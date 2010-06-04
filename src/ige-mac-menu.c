@@ -317,7 +317,7 @@ carbon_menu_item_update_accelerator (CarbonMenuItem *carbon_item,
 	      UInt8 modifiers = 0;
 
 	      SetMenuItemCommandKey (carbon_item->menu, carbon_item->index,
-				     true, keys[0].keycode);
+				     TRUE, keys[0].keycode);
 
 	      g_free (keys);
 
@@ -349,7 +349,7 @@ carbon_menu_item_update_accelerator (CarbonMenuItem *carbon_item,
   ChangeMenuItemAttributes (carbon_item->menu, carbon_item->index,
 			    0, kMenuItemAttrUseVirtualKey);
   SetMenuItemCommandKey (carbon_item->menu, carbon_item->index,
-			 false, 0);
+			 FALSE, 0);
 }
 
 static void

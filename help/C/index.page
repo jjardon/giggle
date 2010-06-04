@@ -1,0 +1,31 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="guide"
+      id="index">
+  <info>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  </info>
+
+  <title>Giggle Help</title>
+
+  <section id="views" style="2column">
+     <title>Working with <app>Giggle</app></title>
+  </section>
+  <section id="basics" style="2column">
+    <title>Working with GIT repositories</title>
+  </section>
+
+</page>

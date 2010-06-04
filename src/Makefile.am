@@ -2,7 +2,6 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-DICONDIR='"$(datadir)/icons"' \
 	-DGLADEDIR='"$(pkgdatadir)/glade"' \
-	-DPACKAGE_WEBSITE='"http://live.gnome.org/giggle/"' \
 	$(GIGGLE_CFLAGS) $(PLATFORM_CFLAGS) \
 	$(WARN_CFLAGS)
 
@@ -23,6 +22,8 @@ giggle_SOURCES = \
 	giggle-avatar-image.h \
 	giggle-branches-view.c \
 	giggle-branches-view.h \
+	giggle-clone-dialog.c \
+	giggle-clone-dialog.h \
 	giggle-description-editor.c \
 	giggle-description-editor.h \
 	giggle-diff-view.c \

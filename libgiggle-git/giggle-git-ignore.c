@@ -26,9 +26,7 @@
 #include <fnmatch.h>
 #include <string.h>
 
-typedef struct GiggleGitIgnorePriv GiggleGitIgnorePriv;
-
-struct GiggleGitIgnorePriv {
+struct _GiggleGitIgnorePriv {
 	GiggleGit *git;
 	gchar     *directory_path;
 	gchar     *relative_path;
@@ -52,8 +50,6 @@ static GObject*   git_ignore_constructor        (GType                  type,
 
 
 G_DEFINE_TYPE (GiggleGitIgnore, giggle_git_ignore, G_TYPE_OBJECT);
-
-#define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GIGGLE_TYPE_GIT_IGNORE, GiggleGitIgnorePriv))
 
 enum {
 	PROP_0,
@@ -84,11 +80,11 @@ giggle_git_ignore_class_init (GiggleGitIgnoreClass *class)
 static void
 giggle_git_ignore_init (GiggleGitIgnore *git_ignore)
 {
-	GiggleGitIgnorePriv *priv;
+	git_ignore->priv = G_TYPE_INSTANCE_GET_PRIVATE (git_ignore,
+	                                                GIGGLE_TYPE_GIT_IGNORE,
+	                                                GiggleGitIgnorePriv);
 
-	priv = GET_PRIV (git_ignore);
-
-	priv->git = giggle_git_get ();
+	git_ignore->priv->git = giggle_git_get ();
 }
 
 static void
@@ -96,7 +92,7 @@ git_ignore_finalize (GObject *object)
 {
 	GiggleGitIgnorePriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_GIT_IGNORE (object)->priv;
 
 	g_object_unref (priv->git);
 	g_free (priv->directory_path);
@@ -123,7 +119,7 @@ git_ignore_get_property (GObject    *object,
 {
 	GiggleGitIgnorePriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_GIT_IGNORE (object)->priv;
 
 	switch (param_id) {
 	case PROP_DIRECTORY:
@@ -143,7 +139,7 @@ git_ignore_set_property (GObject      *object,
 {
 	GiggleGitIgnorePriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_GIT_IGNORE (object)->priv;
 
 	switch (param_id) {
 	case PROP_DIRECTORY:
@@ -195,7 +191,7 @@ git_ignore_constructor (GType                  type,
 	object = (* G_OBJECT_CLASS (giggle_git_ignore_parent_class)->constructor) (type,
 										   n_construct_properties,
 										   construct_params);
-	priv = GET_PRIV (object);
+	priv = GIGGLE_GIT_IGNORE (object)->priv;
 
 	path = g_build_filename (priv->directory_path, ".gitignore", NULL);
 	priv->globs = git_ignore_read_file (path);
@@ -225,7 +221,8 @@ git_ignore_save_file (GiggleGitIgnore *git_ignore)
 	GString             *content;
 	gint                 i;
 
-	priv = GET_PRIV (git_ignore);
+	priv = git_ignore->priv;
+
 	path = g_build_filename (priv->directory_path, ".gitignore", NULL);
 	content = g_string_new ("");
 
@@ -349,7 +346,7 @@ giggle_git_ignore_path_matches (GiggleGitIgnore *git_ignore,
 
 	g_return_val_if_fail (GIGGLE_IS_GIT_IGNORE (git_ignore), FALSE);
 
-	priv = GET_PRIV (git_ignore);
+	priv = git_ignore->priv;
 
 	if (git_ignore_path_matches (path, priv->globs, priv->relative_path)) {
 		return TRUE;
@@ -366,13 +363,10 @@ void
 giggle_git_ignore_add_glob (GiggleGitIgnore *git_ignore,
 			    const gchar     *glob)
 {
-	GiggleGitIgnorePriv *priv;
-
 	g_return_if_fail (GIGGLE_IS_GIT_IGNORE (git_ignore));
 	g_return_if_fail (glob != NULL);
 
-	priv = GET_PRIV (git_ignore);
-	g_ptr_array_add (priv->globs, g_strdup (glob));
+	g_ptr_array_add (git_ignore->priv->globs, g_strdup (glob));
 
 	git_ignore_save_file (git_ignore);
 }
@@ -381,13 +375,10 @@ void
 giggle_git_ignore_add_glob_for_path (GiggleGitIgnore *git_ignore,
 				     const gchar     *path)
 {
-	GiggleGitIgnorePriv *priv;
 	const gchar         *glob;
 
 	g_return_if_fail (GIGGLE_IS_GIT_IGNORE (git_ignore));
 	g_return_if_fail (path != NULL);
-
-	priv = GET_PRIV (git_ignore);
 
 	/* FIXME: we add here just the filename, which will
 	 * also ignore matching filenames for subdirectories,
@@ -411,7 +402,7 @@ giggle_git_ignore_remove_glob_for_path (GiggleGitIgnore *git_ignore,
 	g_return_val_if_fail (GIGGLE_IS_GIT_IGNORE (git_ignore), FALSE);
 	g_return_val_if_fail (path != NULL, FALSE);
 
-	priv = GET_PRIV (git_ignore);
+	priv = git_ignore->priv;
 
 	while (i < priv->globs->len) {
 		glob = g_ptr_array_index (priv->globs, i);

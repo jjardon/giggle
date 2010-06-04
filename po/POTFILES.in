@@ -1,15 +1,21 @@
 data/giggle.desktop.in
+data/giggle.schemas.in
 [type: gettext/glade]data/main-window.ui
 libgiggle/giggle-plugin.c
+[type: gettext/glade]plugins/hello-world.xml
 plugins/giggle-personal-details-window.c
 plugins/giggle-view-terminal.c
+[type: gettext/glade]plugins/personal-details.xml
+[type: gettext/glade]plugins/terminal-view.xml
 src/eggfindbar.c
 src/giggle-authors-view.c
 src/giggle-branches-view.c
+src/giggle-clone-dialog.c
 src/giggle-diff-tree-view.c
 src/giggle-diff-view.c
 src/giggle-diff-window.c
 src/giggle-file-list.c
+src/giggle-helpers.c
 src/giggle-main.c
 src/giggle-remote-editor.c
 src/giggle-remotes-view.c
@@ -21,8 +27,3 @@ src/giggle-view-file.c
 src/giggle-view-history.c
 src/giggle-view-summary.c
 src/giggle-window.c
-
-[type: gettext/glade] plugins/hello-world.xml
-[type: gettext/glade] plugins/personal-details.xml
-[type: gettext/glade] plugins/terminal-view.xml
-

@@ -33,14 +33,17 @@ G_BEGIN_DECLS
 #define GIGGLE_IS_GIT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GIGGLE_TYPE_GIT))
 #define GIGGLE_GIT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GIGGLE_TYPE_GIT, GiggleGitClass))
 
-typedef struct GiggleGit      GiggleGit;
-typedef struct GiggleGitClass GiggleGitClass;
+typedef struct _GiggleGit      GiggleGit;
+typedef struct _GiggleGitClass GiggleGitClass;
+typedef struct _GiggleGitPriv  GiggleGitPriv;
 
-struct GiggleGit {
+struct _GiggleGit {
 	GObject parent;
+
+	GiggleGitPriv *priv;
 };
 
-struct GiggleGitClass {
+struct _GiggleGitClass {
 	GObjectClass parent_class;
 
 	void (* changed) (GiggleGit *git);

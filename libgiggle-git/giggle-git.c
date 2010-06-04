@@ -31,9 +31,7 @@
 
 #define d(x) x
 
-typedef struct GiggleGitPriv GiggleGitPriv;
-
-struct GiggleGitPriv {
+struct _GiggleGitPriv {
 	GiggleDispatcher *dispatcher;
 	gchar            *directory;
 	gchar            *git_dir;
@@ -94,7 +92,6 @@ enum {
 
 static guint signals[LAST_SIGNAL] = { 0, };
 
-#define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GIGGLE_TYPE_GIT, GiggleGitPriv))
 
 static void
 giggle_git_class_init (GiggleGitClass *class)
@@ -164,7 +161,9 @@ giggle_git_init (GiggleGit *git)
 {
 	GiggleGitPriv *priv;
 
-	priv = GET_PRIV (git);
+	priv = G_TYPE_INSTANCE_GET_PRIVATE (git,
+	                                    GIGGLE_TYPE_GIT,
+	                                    GiggleGitPriv);
 
 	priv->directory = NULL;
 	priv->dispatcher = giggle_dispatcher_new ();
@@ -172,16 +171,13 @@ giggle_git_init (GiggleGit *git)
 	priv->jobs = g_hash_table_new_full (g_direct_hash, g_direct_equal,
 					    NULL, 
 					    (GDestroyNotify) git_job_data_free);
+	git->priv = priv;
 }
 
 static void
 foreach_job_cancel (gpointer key, GitJobData *data, GiggleGit *git)
 {
-	GiggleGitPriv *priv;
-
-	priv = GET_PRIV (git);
-
-	giggle_dispatcher_cancel (priv->dispatcher, data->id);
+	giggle_dispatcher_cancel (git->priv->dispatcher, data->id);
 }
 
 static void
@@ -189,7 +185,7 @@ git_finalize (GObject *object)
 {
 	GiggleGitPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_GIT (object)->priv;
 
 	g_hash_table_foreach (priv->jobs, 
 			      (GHFunc) foreach_job_cancel,
@@ -214,7 +210,7 @@ git_get_property (GObject    *object,
 {
 	GiggleGitPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_GIT (object)->priv;
 
 	switch (param_id) {
 	case PROP_DESCRIPTION:
@@ -247,10 +243,6 @@ git_set_property (GObject      *object,
 		  const GValue *value,
 		  GParamSpec   *pspec)
 {
-	GiggleGitPriv *priv;
-
-	priv = GET_PRIV (object);
-
 	switch (param_id) {
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
@@ -270,7 +262,7 @@ git_verify_directory (const gchar  *directory,
 		      GError      **error)
 {
 	/* Do some funky stuff to verify that it's a valid GIT repo */
-	gchar   *argv[] = { GIT_COMMAND, "rev-parse", "--git-dir", NULL };
+	const gchar *argv[] = { GIT_COMMAND, "rev-parse", "--git-dir", NULL };
 	gchar   *std_out = NULL;
 	gchar   *std_err = NULL;
 	gint     exit_code = 0;
@@ -281,7 +273,7 @@ git_verify_directory (const gchar  *directory,
 		*git_dir = NULL;
 	}
 
-	g_spawn_sync (directory, argv, NULL,
+	g_spawn_sync (directory, (gchar **) argv, NULL,
 		      0, NULL, NULL,
 		      &std_out, &std_err,
 		      &exit_code, &local_error);
@@ -353,7 +345,7 @@ git_execute_callback (GiggleDispatcher *dispatcher,
 	GiggleGitPriv *priv;
 	GitJobData    *data;
 
-	priv = GET_PRIV (git);
+	priv = git->priv;
 
 	data = g_hash_table_lookup (priv->jobs, GINT_TO_POINTER (id));
 	g_assert (data != NULL);
@@ -390,9 +382,7 @@ giggle_git_get (void)
 static gchar *
 giggle_git_get_description_file (const GiggleGit *git)
 {
-	GiggleGitPriv *priv = GET_PRIV (git);
-
-	return g_build_filename (priv->git_dir, "description", NULL);
+	return g_build_filename (git->priv->git_dir, "description", NULL);
 }
 
 static void
@@ -403,7 +393,8 @@ giggle_git_update_description (GiggleGit *git)
 	GError        *error;
 	gchar* description;
 
-	priv = GET_PRIV (git);
+	priv = git->priv;
+
 	g_free (priv->description);
 	priv->description = NULL;
 
@@ -440,7 +431,7 @@ giggle_git_remote_config_cb (GiggleGit *git,
 	char           *name;
 	const char     *key, *suffix;
 
-	priv = GET_PRIV (git);
+	priv = git->priv;
 
 	config = giggle_git_config_read_get_config (GIGGLE_GIT_CONFIG_READ (job));
 
@@ -491,7 +482,7 @@ giggle_git_remote_list_cb (GiggleGit *git,
 	GList         *names, *l;
 	char          *path;
 
-	priv = GET_PRIV (git);
+	priv = git->priv;
 
 	g_return_if_fail (NULL == priv->remotes);
 
@@ -523,7 +514,7 @@ giggle_git_update_remotes (GiggleGit* git)
 {
 	GiggleGitPriv *priv;
 
-	priv = GET_PRIV (git);
+	priv = git->priv;
 
 	/* cleanup */
 	g_list_foreach (priv->remotes, (GFunc) g_object_unref, NULL);
@@ -540,7 +531,7 @@ giggle_git_get_description (GiggleGit *git)
 {
 	g_return_val_if_fail (GIGGLE_IS_GIT (git), NULL);
 
-	return GET_PRIV(git)->description;
+	return git->priv->description;
 }
 
 void
@@ -553,7 +544,8 @@ giggle_git_write_description (GiggleGit    *git,
 
 	g_return_if_fail (GIGGLE_IS_GIT (git));
 
-	priv = GET_PRIV (git);
+	priv = git->priv;
+
 	if(description == priv->description) {
 		return;
 	}
@@ -580,13 +572,9 @@ giggle_git_write_description (GiggleGit    *git,
 const gchar *
 giggle_git_get_directory (GiggleGit *git)
 {
-	GiggleGitPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_GIT (git), NULL);
 
-	priv = GET_PRIV (git);
-
-	return priv->directory;
+	return git->priv->directory;
 }
 
 gboolean
@@ -602,7 +590,7 @@ giggle_git_set_directory (GiggleGit    *git,
 	g_return_val_if_fail (GIGGLE_IS_GIT (git), FALSE);
 	g_return_val_if_fail (directory != NULL, FALSE);
 
-	priv = GET_PRIV (git);
+	priv = git->priv;
 
 	if (!git_verify_directory (directory, &tmp_dir, error)) {
 		return FALSE;
@@ -671,37 +659,25 @@ giggle_git_set_directory (GiggleGit    *git,
 const gchar *
 giggle_git_get_git_dir (GiggleGit *git)
 {
-	GiggleGitPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_GIT (git), NULL);
 
-	priv = GET_PRIV (git);
-
-	return priv->git_dir;
+	return git->priv->git_dir;
 }
 
 const gchar *
 giggle_git_get_project_dir (GiggleGit *git)
 {
-	GiggleGitPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_GIT (git), NULL);
 
-	priv = GET_PRIV (git);
-
-	return priv->project_dir;
+	return git->priv->project_dir;
 }
 
 const gchar *
 giggle_git_get_project_name (GiggleGit* git)
 {
-	GiggleGitPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_GIT (git), NULL);
 
-	priv = GET_PRIV (git);
-
-	return priv->project_name;
+	return git->priv->project_name;
 }
 
 GList *
@@ -709,7 +685,7 @@ giggle_git_get_remotes (GiggleGit *git)
 {
 	g_return_val_if_fail (GIGGLE_IS_GIT (git), NULL);
 
-	return GET_PRIV (git)->remotes;
+	return git->priv->remotes;
 }
 
 void
@@ -722,7 +698,8 @@ giggle_git_save_remote (GiggleGit   *git,
 	g_return_if_fail (GIGGLE_IS_GIT (git));
 	g_return_if_fail (GIGGLE_IS_REMOTE (remote));
 
-	priv = GET_PRIV (git);
+	priv = git->priv;
+
 	path = g_build_filename (priv->git_dir, "remotes", giggle_remote_get_name (remote), NULL);
 	giggle_remote_save_to_file (remote, path);
 	g_free (path);
@@ -741,7 +718,7 @@ giggle_git_run_job_full (GiggleGit             *git,
 	g_return_if_fail (GIGGLE_IS_GIT (git));
 	g_return_if_fail (GIGGLE_IS_JOB (job));
 	
-	priv = GET_PRIV (git);
+	priv = git->priv;
 
 	if (giggle_job_get_command_line (job, &command)) {
 		GitJobData    *data;
@@ -787,7 +764,7 @@ giggle_git_cancel_job (GiggleGit *git, GiggleJob *job)
 	g_return_if_fail (GIGGLE_IS_GIT (git));
 	g_return_if_fail (GIGGLE_IS_JOB (job));
 
-	priv = GET_PRIV (git);
+	priv = git->priv;
 
 	g_object_get (job, "id", &id, NULL);
 	

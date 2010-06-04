@@ -526,7 +526,8 @@ giggle_git_config_update (GiggleGitConfig     *config,
 	}
 
 	if (priv->config) {
-		g_hash_table_unref (priv->config);
+		/* dont destroy, just empty it */
+		g_hash_table_remove_all (priv->config);
 	}
 
 	task = g_new0 (GiggleGitConfigTask, 1);

@@ -34,9 +34,12 @@ G_BEGIN_DECLS
 
 typedef struct _GiggleGitIgnore      GiggleGitIgnore;
 typedef struct _GiggleGitIgnoreClass GiggleGitIgnoreClass;
+typedef struct _GiggleGitIgnorePriv  GiggleGitIgnorePriv;
 
 struct _GiggleGitIgnore {
 	GObject parent_instance;
+
+	GiggleGitIgnorePriv *priv;
 };
 
 struct _GiggleGitIgnoreClass {

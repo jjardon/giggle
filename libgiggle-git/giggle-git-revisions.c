@@ -22,18 +22,17 @@
 #include "giggle-git-revisions.h"
 #include <string.h>
 
-#define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GIGGLE_TYPE_GIT_REVISIONS, GiggleGitRevisionsPriv))
 
 enum {
 	PROP_0,
 	PROP_FILES,
 };
 
-typedef struct {
+struct _GiggleGitRevisionsPriv {
 	GRegex *regex_committer;
 	GList  *revisions;
 	GList  *files;
-} GiggleGitRevisionsPriv;
+};
 
 G_DEFINE_TYPE (GiggleGitRevisions, giggle_git_revisions, GIGGLE_TYPE_JOB)
 
@@ -42,7 +41,7 @@ git_revisions_finalize (GObject *object)
 {
 	GiggleGitRevisionsPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_GIT_REVISIONS (object)->priv;
 
 	if (priv->regex_committer)
 		g_regex_unref (priv->regex_committer);
@@ -64,7 +63,7 @@ git_revisions_get_property (GObject    *object,
 {
 	GiggleGitRevisionsPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_GIT_REVISIONS (object)->priv;
 	
 	switch (param_id) {
 	case PROP_FILES:
@@ -84,7 +83,7 @@ git_revisions_set_property (GObject      *object,
 {
 	GiggleGitRevisionsPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_GIT_REVISIONS (object)->priv;
 
 	switch (param_id) {
 	case PROP_FILES:
@@ -101,13 +100,15 @@ git_revisions_set_property (GObject      *object,
 }
 
 static gboolean
-git_revisions_get_command_line (GiggleJob *job, gchar **command_line)
+git_revisions_get_command_line (GiggleJob  *job,
+                                gchar     **command_line)
 {
 	GiggleGitRevisionsPriv *priv;
 	GString                *str;
 	GList                  *files;
 
-	priv = GET_PRIV (job);
+	priv = GIGGLE_GIT_REVISIONS (job)->priv;
+
 	files = priv->files;
 	str = g_string_new (GIT_COMMAND " rev-list --all --header --topo-order --parents");
 
@@ -301,23 +302,23 @@ git_revisions_get_revision (GiggleGitRevisionsPriv *priv,
 }
 
 static void
-git_revisions_handle_output (GiggleJob   *job,
-			     const gchar *output_str,
-			     gsize        output_len)
+git_revisions_handle_output (GiggleJob    *job,
+                             const gchar  *output_str,
+                             gsize         output_len)
 {
 	GiggleGitRevisionsPriv *priv;
+	GiggleRevision         *revision;
 	GHashTable             *revisions_hash;
 	gchar                  *str;
 
-	priv = GET_PRIV (job);
+	priv = GIGGLE_GIT_REVISIONS (job)->priv;
+
 	priv->revisions = NULL;
 	str = (gchar *) output_str;
 	revisions_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
 						g_free, g_object_unref);
 
 	while (strlen (str) > 0) {
-		GiggleRevision *revision;
-
 		revision = git_revisions_get_revision (priv, str, revisions_hash);
 		priv->revisions = g_list_prepend (priv->revisions, revision);
 
@@ -355,11 +356,11 @@ giggle_git_revisions_class_init (GiggleGitRevisionsClass *class)
 static void
 giggle_git_revisions_init (GiggleGitRevisions *revisions)
 {
-	GiggleGitRevisionsPriv *priv;
+	revisions->priv = G_TYPE_INSTANCE_GET_PRIVATE (revisions,
+	                                               GIGGLE_TYPE_GIT_REVISIONS,
+	                                               GiggleGitRevisionsPriv);
 
-	priv = GET_PRIV (revisions);
-
-	priv->revisions = NULL;
+	revisions->priv->revisions = NULL;
 }
 
 GiggleJob *
@@ -379,11 +380,7 @@ giggle_git_revisions_new_for_files (GList *files)
 GList *
 giggle_git_revisions_get_revisions (GiggleGitRevisions *revisions)
 {
-	GiggleGitRevisionsPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_GIT_REVISIONS (revisions), NULL);
 
-	priv = GET_PRIV (revisions);
-
-	return priv->revisions;
+	return revisions->priv->revisions;
 }

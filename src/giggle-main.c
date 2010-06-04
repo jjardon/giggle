@@ -20,6 +20,7 @@
 
 #include "config.h"
 #include "giggle-window.h"
+#include "giggle-clone-dialog.h"
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
@@ -28,8 +29,14 @@
 
 static gboolean diff_window = FALSE;
 static gboolean version = FALSE;
+static gchar  *clone_uri = NULL;
+static gchar **dirs = NULL;
 
 static GOptionEntry options[] = {
+	{ "clone", 'c',
+	  0, G_OPTION_ARG_FILENAME, &clone_uri,
+	  N_("Clone a repository"),
+	  N_("URL") },
 	{ "diff", 'd',
 	  0, G_OPTION_ARG_NONE, &diff_window,
 	  N_("Show the diff window"),
@@ -37,6 +44,9 @@ static GOptionEntry options[] = {
 	{ "version", 'v',
 	  0, G_OPTION_ARG_NONE, &version,
 	  N_("Show version information and exit"), NULL },
+	{ G_OPTION_REMAINING, '\0',
+	  0, G_OPTION_ARG_FILENAME_ARRAY, &dirs,
+	  NULL, N_("[DIRECTORY]") },
 	{ NULL }
 };
 
@@ -60,7 +70,7 @@ main (int    argc,
 	gdk_threads_init ();
 	gdk_threads_enter ();
 
- 	context = g_option_context_new (N_("[DIRECTORY]"));
+	context = g_option_context_new (NULL);
 
 	g_option_context_set_translation_domain (context, GETTEXT_PACKAGE);
 	g_option_context_add_main_entries (context, options, GETTEXT_PACKAGE);
@@ -82,6 +92,8 @@ main (int    argc,
 
 		goto end;
 	}
+	/* Freing memory */
+	g_option_context_free (context);
 
 	gtk_icon_theme_prepend_search_path (gtk_icon_theme_get_default (), ICONDIR);
 
@@ -101,27 +113,44 @@ main (int    argc,
 	g_set_application_name ("Giggle");
 	window = giggle_window_new ();
 
-	/* parse GIT_DIR into dir and unset it; if empty use the current_wd */
-	dir = g_strdup (g_getenv ("GIT_DIR"));
-
-	if (!dir || !*dir) {
-		g_free (dir);
-
-		if (argc > 1 && *argv[1]) {
-			dir = g_strdup (argv[1]);
-		} else {
+	/* Set dir to:
+	    - the first remaining arg, or
+	    - the value of GIT_DIR, or
+	    - the current working dir */
+	if (dirs && *dirs) {
+		dir = g_strdup (*dirs);
+		g_strfreev (dirs);
+	} else {
+		dir = g_strdup (g_getenv ("GIT_DIR"));
+		if (dir == NULL) {
 			dir = g_get_current_dir ();
 		}
 	}
-
 	g_unsetenv ("GIT_DIR");
+
+	if (clone_uri) {
+		GtkWidget *clone_dialog;
+		GtkResponseType response;
+		gchar *clone_dir;
+
+		clone_dir = g_strdup (dir);
+		clone_dialog = giggle_clone_dialog_new (clone_uri, clone_dir);
+		g_free (clone_dir);
+
+		response = gtk_dialog_run (GTK_DIALOG (clone_dialog));
+		if (response == GTK_RESPONSE_ACCEPT) {
+			/* replace dir with the the newly cloned repo's one */
+			g_free (dir);
+			dir = g_strdup (giggle_clone_dialog_get_directory (GIGGLE_CLONE_DIALOG (clone_dialog)));
+		}
+		gtk_widget_destroy (clone_dialog);
+	}
 
 	if (giggle_git_test_dir (dir)) {
 		giggle_window_set_directory (GIGGLE_WINDOW (window), dir);
 	} else {
 		gtk_widget_show (window);
 	}
-
 	g_free (dir);
 
 	/* window will show itself when it reads its initial size configuration */

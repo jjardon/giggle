@@ -464,6 +464,7 @@ revision_tooltip_add_refs (GString  *str,
 			   GList    *list)
 {
 	GiggleRef *ref;
+	gchar     *escaped_string;
 
 	if (str->len > 0 && list)
 		g_string_append (str, "\n");
@@ -472,8 +473,10 @@ revision_tooltip_add_refs (GString  *str,
 		ref = list->data;
 		list = list->next;
 
+		escaped_string = g_markup_escape_text (giggle_ref_get_name (ref), -1);
 		g_string_append_printf (str, "<b>%s</b>: %s", label,
-					giggle_ref_get_name (ref));
+		                        escaped_string);
+		g_free (escaped_string);
 
 		if (list)
 			g_string_append (str, "\n");
@@ -675,13 +678,20 @@ giggle_rev_list_view_class_init (GiggleRevListViewClass *class)
 
 static gboolean
 revision_property_matches (GiggleRevision *revision,
-			   const gchar    *property,
-			   const gchar    *search_term)
+                           const gchar    *property,
+                           const gchar    *search_term)
 {
-	gboolean  match;
-	gchar    *str, *casefold_str;
+	GiggleAuthor *author;
+	gboolean      match;
+	gchar        *str, *casefold_str;
 
-	g_object_get (revision, property, &str, NULL);
+	if (g_strcmp0 ("author", property) == 0) {
+		g_object_get (revision, "author", &author, NULL);
+		g_object_get (author, "name", &str, NULL);
+		g_object_unref (author);
+	} else if (g_strcmp0 ("sha", property) == 0) {
+		g_object_get (revision, "sha", &str, NULL);
+	}
 	casefold_str = g_utf8_casefold (str, -1);
 	match = strstr (casefold_str, search_term) != NULL;
 
@@ -1656,7 +1666,7 @@ giggle_rev_list_view_init (GiggleRevListView *rev_list_view)
 	GtkActionEntry menu_items [] = {
 		{ "Commit",         NULL,                 N_("Commit"),         NULL, NULL, G_CALLBACK (rev_list_view_commit) },
 		{ "CreateBranch",   NULL,                 N_("Create _Branch"), NULL, NULL, G_CALLBACK (rev_list_view_create_branch) },
-		{ "CreateTag",      "stock_add-bookmark", N_("Create _Tag"),    NULL, NULL, G_CALLBACK (rev_list_view_create_tag) },
+		{ "CreateTag",      "bookmark-new",       N_("Create _Tag"),    NULL, NULL, G_CALLBACK (rev_list_view_create_tag) },
 		{ "CreatePatch",    NULL,                 N_("Create _Patch"),  NULL, NULL, G_CALLBACK (rev_list_view_create_patch) },
 	};
 

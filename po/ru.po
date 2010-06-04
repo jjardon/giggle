@@ -1,0 +1,739 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Giggle\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-25 18:26+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Trukhachev Alexey <trukhachev@gmail.com>\n"
+"Language-Team: Trukhachev <trukhachev@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../data/giggle.desktop.in.h:1
+msgid "Giggle"
+msgstr "Giggle"
+
+#: ../data/giggle.desktop.in.h:2
+msgid "Git repository viewer"
+msgstr "Показать репозиторий"
+
+#: ../data/main-window.glade.h:1
+msgid "<b>Branches</b>"
+msgstr "<b>Ветви</b>"
+
+#: ../data/main-window.glade.h:2
+msgid "Name:"
+msgstr "Имя:"
+
+#: ../data/main-window.glade.h:3
+msgid "URL:"
+msgstr "Адрес:"
+
+#: ../libgiggle/giggle-plugin.c:528
+#, c-format
+msgid "Cannot find plugin description in '%s'"
+msgstr "Не удалось найти описание плагина в '%s'"
+
+#: ../plugins/giggle-personal-details-window.c:82
+msgid "There was an error setting the configuration"
+msgstr "Произошла ошибка настройки конфигурации"
+
+#: ../plugins/giggle-personal-details-window.c:184
+msgid "There was an error getting the configuration"
+msgstr "Произошла ошибка при получении конфигурации"
+
+#: ../plugins/giggle-personal-details-window.c:248
+msgid "_Name:"
+msgstr "_Имя:"
+
+#: ../plugins/giggle-personal-details-window.c:256
+msgid "_Email:"
+msgstr "_Электронная почта:"
+
+#: ../plugins/giggle-personal-details-window.c:267
+#: ../plugins/personal-details.xml.h:2
+msgid "Personal Details"
+msgstr "Персональная информация"
+
+#: ../plugins/giggle-view-terminal.c:109
+msgid "_Terminal"
+msgstr "_Терминал"
+
+#: ../plugins/giggle-view-terminal.c:110
+msgid "Issue git commands via terminal"
+msgstr "Запускать git команды через терминал "
+
+#: ../src/eggfindbar.c:307
+msgid "Find:"
+msgstr "Найти:"
+
+#: ../src/eggfindbar.c:316
+msgid "Find Previous"
+msgstr "Найти предыдущее"
+
+#: ../src/eggfindbar.c:319
+msgid "Find previous occurrence of the search string"
+msgstr "Найти предыдущее вхождение строки"
+
+#: ../src/eggfindbar.c:324
+msgid "Find Next"
+msgstr "Найти следующее"
+
+#: ../src/eggfindbar.c:327
+msgid "Find next occurrence of the search string"
+msgstr "Найти следеющее вхождение строки"
+
+#: ../src/eggfindbar.c:335
+msgid "C_ase Sensitive"
+msgstr "Учитывать ре_гистр"
+
+#: ../src/eggfindbar.c:339
+msgid "Toggle case sensitive search"
+msgstr "Использовать чувствительность к регистру символов при поиске"
+
+#: ../src/giggle-authors-view.c:80
+#, c-format
+msgid ""
+"An error occurred when retrieving authors list:\n"
+"%s"
+msgstr ""
+"Произошла ошибка при получении списока авторов:\n"
+"%s"
+
+#: ../src/giggle-authors-view.c:146
+msgid "Authors:"
+msgstr "Авторы:"
+
+#: ../src/giggle-branches-view.c:81
+#, c-format
+msgid ""
+"An error occurred when retrieving branches list:\n"
+"%s"
+msgstr ""
+"Произошла ошибка при получении списка ветвей:\n"
+"%s"
+
+#: ../src/giggle-branches-view.c:147
+#: ../src/giggle-revision-view.c:206
+msgid "Branches:"
+msgstr "Ветви:"
+
+#: ../src/giggle-diff-tree-view.c:142
+#: ../src/giggle-file-list.c:1675
+#, c-format
+msgid ""
+"An error occurred when retrieving different files list:\n"
+"%s"
+msgstr ""
+"Произошла ошибка при получении списка измененных файлов:\n"
+"%s"
+
+#: ../src/giggle-diff-tree-view.c:209
+msgid "Changed files"
+msgstr "Измененные файлы"
+
+#: ../src/giggle-diff-view.c:603
+#, c-format
+msgid ""
+"An error occurred when retrieving a diff:\n"
+"%s"
+msgstr ""
+"Произошла ошибка при получении изменений:\n"
+"%s"
+
+#: ../src/giggle-diff-window.c:82
+msgid "Commit changes"
+msgstr "Состояние изменений"
+
+#: ../src/giggle-diff-window.c:104
+msgid "Revision log:"
+msgstr "Журнал версии:"
+
+#: ../src/giggle-diff-window.c:134
+msgid "Co_mmit"
+msgstr "С_остояние"
+
+#: ../src/giggle-diff-window.c:207
+#, c-format
+msgid ""
+"An error occurred when committing:\n"
+"%s"
+msgstr ""
+"Произошла ошибка при изменении состояния:\n"
+"%s"
+
+#: ../src/giggle-file-list.c:394
+#, c-format
+msgid ""
+"An error occurred when retrieving the file list:\n"
+"%s"
+msgstr ""
+"Произошла ошибка при получении списка файлов:\n"
+"%s"
+
+#: ../src/giggle-file-list.c:767
+#, c-format
+msgid ""
+"An error occurred when adding a file to git:\n"
+"%s"
+msgstr ""
+"Произошла ошибка при добавлении файла в репозиторий:\n"
+"%s"
+
+#: ../src/giggle-file-list.c:827
+#: ../src/giggle-file-list.c:853
+#: ../src/giggle-rev-list-view.c:1184
+#: ../src/giggle-rev-list-view.c:1215
+#, c-format
+msgid "Could not save the patch as %s"
+msgstr "Не удалось сохранить патч в %s"
+
+#: ../src/giggle-file-list.c:832
+#: ../src/giggle-file-list.c:858
+#: ../src/giggle-rev-list-view.c:1192
+#: ../src/giggle-rev-list-view.c:1220
+msgid "No error was given"
+msgstr "Не получал никакой ошибки"
+
+#: ../src/giggle-file-list.c:879
+#: ../src/giggle-rev-list-view.c:1246
+#, c-format
+msgid "Patch saved as %s"
+msgstr "Патч сохранен в %s"
+
+#: ../src/giggle-file-list.c:883
+#: ../src/giggle-rev-list-view.c:1250
+#, c-format
+msgid "Created in project directory"
+msgstr "Создан в каталоге проекта"
+
+#: ../src/giggle-file-list.c:886
+#: ../src/giggle-rev-list-view.c:1253
+#, c-format
+msgid "Created in directory %s"
+msgstr "Создан в каталоге %s"
+
+#: ../src/giggle-file-list.c:921
+#: ../src/giggle-rev-list-view.c:1306
+msgid "Create Patch"
+msgstr "Создать патч"
+
+#: ../src/giggle-file-list.c:1024
+msgid "Delete glob pattern?"
+msgstr "Удалить шаблон?"
+
+#: ../src/giggle-file-list.c:1027
+msgid "The selected file was shadowed by a glob pattern that may be hiding other files, delete it?"
+msgstr "Отмеченный файл скрыл условия для отбора, которые скрывают другие файлы. Удалить его?"
+
+#: ../src/giggle-file-list.c:1423
+msgid "_Commit Changes"
+msgstr "Состояние и_зменений"
+
+#: ../src/giggle-file-list.c:1425
+msgid "A_dd file to repository"
+msgstr "Добавить файл в _репозиторий"
+
+#: ../src/giggle-file-list.c:1426
+#: ../src/giggle-rev-list-view.c:1660
+msgid "Create _Patch"
+msgstr "_Создать патч"
+
+#: ../src/giggle-file-list.c:1427
+msgid "_Add to .gitignore"
+msgstr "_Добавить в .gitignore"
+
+#: ../src/giggle-file-list.c:1428
+msgid "_Remove from .gitignore"
+msgstr "_Переместить из .gitignore"
+
+#: ../src/giggle-file-list.c:1432
+msgid "_Show all files"
+msgstr "Показать _все файлы"
+
+#: ../src/giggle-file-list.c:1471
+msgid "Project"
+msgstr "Проект"
+
+#: ../src/giggle-main.c:35
+msgid "Show the diff window"
+msgstr "Показать окно изменений"
+
+#: ../src/giggle-main.c:39
+msgid "Show version information and exit"
+msgstr "Показать информацию о версии и выйти"
+
+#: ../src/giggle-main.c:63
+msgid "[DIRECTORY]"
+msgstr "[КАТАЛОГ]"
+
+#: ../src/giggle-main.c:69
+#, c-format
+msgid "Report errors (in English, with LC_ALL=C) to <%s>."
+msgstr "Сообщать об ошибках (на английском языке, с LC_ALL=C) до <%s>."
+
+#: ../src/giggle-main.c:70
+msgid "Giggle is a graphical frontend for the git content tracker."
+msgstr "Giggle это графическая оболочка для распределённой системы управления версиями файлов git."
+
+#: ../src/giggle-main.c:78
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr "Используйте `%s --help' для подробной справки.\n"
+
+#: ../src/giggle-remote-editor.c:154
+msgid "Click to add mapping..."
+msgstr "Нажмите, чтобы добавить отображение..."
+
+#: ../src/giggle-remote-editor.c:180
+msgid "Branches"
+msgstr "Ветви"
+
+#: ../src/giggle-remote-editor.c:375
+msgid "Unnamed"
+msgstr "Безымянный"
+
+#: ../src/giggle-remotes-view.c:265
+msgid "Icon"
+msgstr "Иконка"
+
+#: ../src/giggle-remotes-view.c:271
+msgid "Name"
+msgstr "Имя"
+
+#: ../src/giggle-remotes-view.c:276
+msgid "URL"
+msgstr "Адрес"
+
+#: ../src/giggle-remotes-view.c:289
+msgid "Double click to add remote..."
+msgstr "Дважды щелкните для добавления внешнего репозитория"
+
+#: ../src/giggle-revision-view.c:198
+#: ../src/giggle-view-file.c:1219
+msgid "Author:"
+msgstr "Автор:"
+
+#: ../src/giggle-revision-view.c:202
+#: ../src/giggle-view-file.c:1220
+msgid "Committer:"
+msgstr "Сохранил:"
+
+#: ../src/giggle-revision-view.c:204
+#: ../src/giggle-view-file.c:1221
+msgid "Date:"
+msgstr "Дата:"
+
+#: ../src/giggle-revision-view.c:205
+#: ../src/giggle-view-file.c:1222
+msgid "SHA:"
+msgstr "SHA:"
+
+#: ../src/giggle-revision-view.c:224
+msgid "Change Log:"
+msgstr "Журнал изменений:"
+
+#: ../src/giggle-revision-view.c:507
+msgid "_Details"
+msgstr "_Подробности"
+
+#: ../src/giggle-revision-view.c:508
+msgid "Display revision details"
+msgstr "Показать подробности версии"
+
+#: ../src/giggle-rev-list-view.c:353
+#, c-format
+msgid "Delete branch \"%s\""
+msgstr "Удалить ветвь \"%s\""
+
+#: ../src/giggle-rev-list-view.c:356
+#, c-format
+msgid "Delete tag \"%s\""
+msgstr "Удалить тег \"%s\""
+
+#: ../src/giggle-rev-list-view.c:523
+msgid "Branch"
+msgstr "Ветвь"
+
+#: ../src/giggle-rev-list-view.c:526
+msgid "Tag"
+msgstr "Тег"
+
+#: ../src/giggle-rev-list-view.c:529
+msgid "Remote"
+msgstr "Внешние репозитории"
+
+#: ../src/giggle-rev-list-view.c:1074
+msgid "Enter branch name:"
+msgstr "Введите имя ветви"
+
+#: ../src/giggle-rev-list-view.c:1125
+msgid "Enter tag name:"
+msgstr "Введите имя тега"
+
+#: ../src/giggle-rev-list-view.c:1186
+#, c-format
+msgid "Could not create patch"
+msgstr "Не удалось создать патч"
+
+#: ../src/giggle-rev-list-view.c:1447
+msgid "Uncommitted changes"
+msgstr "Незадействованные изменения"
+
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1501
+msgid "%I:%M %p"
+msgstr "%H:%M"
+
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1514
+msgid "%a %I:%M %p"
+msgstr "%a %H:%M"
+
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1526
+msgid "%b %d %I:%M %p"
+msgstr "%d %B %H:%M "
+
+#. it's older
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1531
+msgid "%b %d %Y"
+msgstr "%d %B %Y"
+
+#: ../src/giggle-rev-list-view.c:1657
+msgid "Commit"
+msgstr "Состояние"
+
+#: ../src/giggle-rev-list-view.c:1658
+msgid "Create _Branch"
+msgstr "Создать _ветвь"
+
+#: ../src/giggle-rev-list-view.c:1659
+msgid "Create _Tag"
+msgstr "Создать _тег"
+
+#: ../src/giggle-rev-list-view.c:1720
+msgid "Graph"
+msgstr "Дерево"
+
+#: ../src/giggle-rev-list-view.c:1738
+msgid "Short Log"
+msgstr "Краткий журнал"
+
+#: ../src/giggle-rev-list-view.c:1757
+msgid "Author"
+msgstr "Автор"
+
+#: ../src/giggle-rev-list-view.c:1774
+msgid "Date"
+msgstr "Дата"
+
+#: ../src/giggle-short-list.c:265
+msgid "Details"
+msgstr "Подробности"
+
+#: ../src/giggle-short-list.c:375
+msgid "Show A_ll..."
+msgstr "Показать _всё..."
+
+#: ../src/giggle-view-diff.c:108
+#, c-format
+msgid "Change %d of %d"
+msgstr "Изменения %d из %d"
+
+#: ../src/giggle-view-diff.c:185
+msgid "_Previous Change"
+msgstr "Пред_ыдущие изменения"
+
+#: ../src/giggle-view-diff.c:185
+msgid "View previous change"
+msgstr "Показать предыдущие изменения"
+
+#: ../src/giggle-view-diff.c:189
+msgid "_Next Change"
+msgstr "След_ующие изменения"
+
+#: ../src/giggle-view-diff.c:189
+msgid "View next change"
+msgstr "Показать следующие изменения"
+
+#: ../src/giggle-view-diff.c:349
+msgid "_Changes"
+msgstr "И_зменения"
+
+#: ../src/giggle-view-diff.c:350
+msgid "Browse a revision's changes"
+msgstr "Показать версии изменений"
+
+#: ../src/giggle-view-file.c:328
+msgid "_Goto Line Number"
+msgstr "_Перейти к строке номер"
+
+#: ../src/giggle-view-file.c:329
+msgid "Highlight specified line number"
+msgstr "Подсветить указанный номер строки"
+
+#: ../src/giggle-view-file.c:333
+msgid "Show _Changes"
+msgstr "Показать из_менения"
+
+#: ../src/giggle-view-file.c:334
+msgid "Show changes for selected revision"
+msgstr "Показать изменения для выбранной версии"
+
+#: ../src/giggle-view-file.c:338
+msgid "Select _Revision"
+msgstr "Выбрать вер_сию"
+
+#: ../src/giggle-view-file.c:339
+msgid "Select revision of selected line"
+msgstr "Выбрать версию для выбранной строки"
+
+#: ../src/giggle-view-file.c:904
+#, c-format
+msgid ""
+"An error occurred when getting file ref:\n"
+"%s"
+msgstr ""
+"Произошла ошибка при получении ссылки на файл:\n"
+"%s"
+
+#: ../src/giggle-view-file.c:975
+#: ../src/giggle-view-history.c:250
+#: ../src/giggle-view-history.c:345
+#, c-format
+msgid ""
+"An error occurred when getting the revisions list:\n"
+"%s"
+msgstr ""
+"Произошла ошибка при получении списка версий:\n"
+"%s"
+
+#: ../src/giggle-view-file.c:1135
+msgid "Line Number:"
+msgstr "Номер строки:"
+
+#: ../src/giggle-view-file.c:1568
+msgid "_Browse"
+msgstr "Просмотр списка _файлов"
+
+#: ../src/giggle-view-file.c:1569
+msgid "Browse the files of this project"
+msgstr "Показать файлы проекта"
+
+#: ../src/giggle-view-history.c:834
+msgid "_History"
+msgstr "_История"
+
+#: ../src/giggle-view-history.c:835
+msgid "Browse the history of this project"
+msgstr "Просмотр истории проекта"
+
+#: ../src/giggle-view-summary.c:117
+msgid "<b>Description:</b>"
+msgstr "<b>Описание:</b>"
+
+#: ../src/giggle-view-summary.c:163
+msgid "<b>Remotes:</b>"
+msgstr "<b>Внешние репозитории:</b>"
+
+#: ../src/giggle-view-summary.c:189
+msgid "_Summary"
+msgstr "_Сводка"
+
+#: ../src/giggle-view-summary.c:192
+msgid "_Branches"
+msgstr "_Ветви"
+
+#: ../src/giggle-view-summary.c:195
+msgid "_Authors"
+msgstr "_Авторы"
+
+#: ../src/giggle-view-summary.c:198
+msgid "_Remotes"
+msgstr "_Внешние репозитории"
+
+#: ../src/giggle-window.c:562
+msgid "About Giggle"
+msgstr "О Giggle"
+
+#: ../src/giggle-window.c:587
+#, c-format
+msgid "The directory '%s' does not look like a git repository."
+msgstr "Каталог '%s' не похож на репозиторий."
+
+#: ../src/giggle-window.c:670
+msgid "Select git repository"
+msgstr "Выбрать репозиторий"
+
+#: ../src/giggle-window.c:706
+#, c-format
+msgid "Properties of %s"
+msgstr "Свойства %s"
+
+#: ../src/giggle-window.c:920
+msgid "translator-credits"
+msgstr "Trukhachev Alexey <trukhachev@gmail.com>"
+
+#: ../src/giggle-window.c:921
+msgid "A graphical frontend to the git content tracker."
+msgstr "Графическая оболочка к распределённой системе управления версиями файлов git."
+
+#: ../src/giggle-window.c:976
+msgid "_Find..."
+msgstr "_Найти..."
+
+#: ../src/giggle-window.c:977
+msgid "Find..."
+msgstr "Найти..."
+
+#: ../src/giggle-window.c:983
+msgid "Find Ne_xt"
+msgstr "Найти след_ующее"
+
+#: ../src/giggle-window.c:984
+msgid "Find next match"
+msgstr "Найти следующее совпадение"
+
+#: ../src/giggle-window.c:987
+msgid "Find Pre_vious"
+msgstr "Найти пред_ыдущее"
+
+#: ../src/giggle-window.c:988
+msgid "Find previous match"
+msgstr "Найти предыдущее совпадение"
+
+#: ../src/giggle-window.c:994
+msgid "_Project"
+msgstr "Про_ект"
+
+#: ../src/giggle-window.c:995
+msgid "_Edit"
+msgstr "_Правка"
+
+#: ../src/giggle-window.c:996
+msgid "_Go"
+msgstr "Пе_рейти"
+
+#: ../src/giggle-window.c:997
+msgid "_View"
+msgstr "_Вид"
+
+#: ../src/giggle-window.c:998
+msgid "_Help"
+msgstr "_Справка"
+
+#: ../src/giggle-window.c:1001
+msgid "Open a git repository"
+msgstr "Открыть репозиторий"
+
+#: ../src/giggle-window.c:1006
+msgid "_Save patch"
+msgstr "_Сохранить патч"
+
+#: ../src/giggle-window.c:1006
+msgid "Save a patch"
+msgstr "Сохранить патч"
+
+#: ../src/giggle-window.c:1010
+msgid "_Diff current changes"
+msgstr "Diff _текущих изменений"
+
+#: ../src/giggle-window.c:1010
+msgid "Diff current changes"
+msgstr "Diff текущих изменений"
+
+#: ../src/giggle-window.c:1015
+msgid "Quit the application"
+msgstr "Закрыть приложение"
+
+#: ../src/giggle-window.c:1033
+msgid "Go backward in history"
+msgstr "Перейти назад в историю"
+
+#: ../src/giggle-window.c:1037
+msgid "Go forward in history"
+msgstr "Перейти вперед в историю"
+
+#: ../src/giggle-window.c:1041
+msgid "Visit _Homepage"
+msgstr "Посетить _домашнюю страницу"
+
+#: ../src/giggle-window.c:1042
+msgid "Visit the homepage of Giggle"
+msgstr "Посетить домашнюю страницу Giggle"
+
+#: ../src/giggle-window.c:1045
+msgid "Report _Issue"
+msgstr "Сообщить о проблеме"
+
+#: ../src/giggle-window.c:1046
+msgid "Report an issue you've found in Giggle"
+msgstr "Сообщить о проблеме найденной вами в Giggle"
+
+#: ../src/giggle-window.c:1050
+msgid "About this application"
+msgstr "О программе"
+
+#: ../src/giggle-window.c:1057
+msgid "Show revision tree"
+msgstr "Показать дерево версий"
+
+#: ../src/giggle-window.c:1064
+msgid "Show and edit project properties"
+msgstr "Показать и изменить свойства проекта"
+
+#: ../src/giggle-window.c:1068
+msgid "Refresh current view"
+msgstr "Обновить текущий вид"
+
+#: ../src/giggle-window.c:1399
+msgid "Search Inside _Patches"
+msgstr "Поиск внутри пат_чей"
+
+#: ../src/giggle-window.c:1671
+msgid "Save patch file"
+msgstr "Сохранить файл патча"
+
+#: ../src/giggle-window.c:1691
+#, c-format
+msgid ""
+"An error occurred when saving to file:\n"
+"%s"
+msgstr ""
+"Произошла ошибка при сохранении в файл:\n"
+"%s"
+
+#: ../plugins/hello-world.xml.h:1
+msgid "Check if the plugin system works"
+msgstr "Проверьте, если плагин работает в системе"
+
+#: ../plugins/hello-world.xml.h:2
+msgid "Demonstration of Giggle's Plugin System"
+msgstr "Демонстрация системы плагинов Giggle's"
+
+#: ../plugins/hello-world.xml.h:3
+msgid "Hello World"
+msgstr "Привет мир"
+
+#: ../plugins/personal-details.xml.h:1
+msgid "Edit personal details"
+msgstr "Изменить персональную информацию"
+
+#: ../plugins/terminal-view.xml.h:1
+msgid "Create _Terminal"
+msgstr "Создать окно терминала"
+
+#: ../plugins/terminal-view.xml.h:2
+msgid "Create new tab in git terminal"
+msgstr "Создать новую закладку в окне терминала"
+
+#: ../plugins/terminal-view.xml.h:3
+msgid "Terminal window"
+msgstr "Окно терминала"
+

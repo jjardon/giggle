@@ -24,9 +24,7 @@
 #include "giggle-revision.h"
 #include "giggle-ref.h"
 
-typedef struct GiggleRefPriv GiggleRefPriv;
-
-struct GiggleRefPriv {
+struct _GiggleRefPriv {
 	gchar          *name;
 	gchar          *sha;
 	GiggleRevision *revision;
@@ -50,8 +48,6 @@ enum {
 	PROP_SHA,
 	PROP_HEAD,
 };
-
-#define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GIGGLE_TYPE_REF, GiggleRefPriv))
 
 static void
 giggle_ref_class_init (GiggleRefClass *class)
@@ -93,6 +89,9 @@ giggle_ref_class_init (GiggleRefClass *class)
 static void
 giggle_ref_init (GiggleRef *ref)
 {
+	ref->priv = G_TYPE_INSTANCE_GET_PRIVATE (ref,
+	                                         GIGGLE_TYPE_REF,
+	                                         GiggleRefPriv);
 }
 
 static void
@@ -100,7 +99,7 @@ giggle_ref_finalize (GObject *object)
 {
 	GiggleRefPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_REF (object)->priv;
 
 	g_free (priv->name);
 	g_free (priv->sha);
@@ -120,7 +119,7 @@ giggle_ref_get_property (GObject    *object,
 {
 	GiggleRefPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_REF (object)->priv;
 
 	switch (param_id) {
 	case PROP_NAME:
@@ -146,7 +145,7 @@ giggle_ref_set_property (GObject      *object,
 {
 	GiggleRefPriv *priv;
 	
-	priv = GET_PRIV (object);
+	priv = GIGGLE_REF (object)->priv;
 
 	switch (param_id) {
 	case PROP_NAME:
@@ -180,23 +179,17 @@ giggle_ref_new (const gchar *name)
 G_CONST_RETURN gchar *
 giggle_ref_get_name (GiggleRef *ref)
 {
-	GiggleRefPriv *priv;
+	if (G_LIKELY (ref))
+		return ref->priv->name;
 
-	g_return_val_if_fail (GIGGLE_IS_REF (ref), NULL);
-
-	priv = GET_PRIV (ref);
-
-	return priv->name;
+	return NULL;
 }
 
 G_CONST_RETURN gchar *
 giggle_ref_get_sha (GiggleRef *ref)
 {
-	GiggleRefPriv *priv;
+	if (G_LIKELY (ref))
+		return ref->priv->sha;
 
-	g_return_val_if_fail (GIGGLE_IS_REF (ref), NULL);
-
-	priv = GET_PRIV (ref);
-
-	return priv->sha;
+	return NULL;
 }

@@ -108,7 +108,7 @@ giggle_view_terminal_new (void)
 			       "name", "TerminalView",
 			       "label", _("_Terminal"),
 			       "tooltip", _("Issue git commands via terminal"),
-			       "icon-name", "gnome-terminal",
+			       "icon-name", "utilities-terminal",
 			       "is-important", TRUE,
 			       "visible", FALSE, NULL);
 

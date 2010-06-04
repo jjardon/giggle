@@ -1,5 +1,5 @@
 *.bak
-*.gladep
 Makefile.in
 Makefile
 giggle.desktop
+giggle.schemas

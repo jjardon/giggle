@@ -33,14 +33,18 @@ G_BEGIN_DECLS
 #define GIGGLE_IS_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GIGGLE_TYPE_WINDOW))
 #define GIGGLE_WINDOW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GIGGLE_TYPE_WINDOW, GiggleWindowClass))
 
-typedef struct GiggleWindow      GiggleWindow;
-typedef struct GiggleWindowClass GiggleWindowClass;
+typedef struct _GiggleWindow      GiggleWindow;
+typedef struct _GiggleWindowClass GiggleWindowClass;
+typedef struct _GiggleWindowPriv  GiggleWindowPriv;
 
-struct GiggleWindow {
+struct _GiggleWindow {
 	GtkWindow parent_instance;
+
+	/* <private> */
+	GiggleWindowPriv *priv;
 };
 
-struct GiggleWindowClass {
+struct _GiggleWindowClass {
 	GtkWindowClass parent_class;
 	void (*quitting) (GiggleWindow *window);
 };

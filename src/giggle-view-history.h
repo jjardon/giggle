@@ -33,14 +33,17 @@ G_BEGIN_DECLS
 #define GIGGLE_IS_VIEW_HISTORY_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GIGGLE_TYPE_VIEW_HISTORY))
 #define GIGGLE_VIEW_HISTORY_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GIGGLE_TYPE_VIEW_HISTORY, GiggleViewHistoryClass))
 
-typedef struct GiggleViewHistory      GiggleViewHistory;
-typedef struct GiggleViewHistoryClass GiggleViewHistoryClass;
+typedef struct _GiggleViewHistory      GiggleViewHistory;
+typedef struct _GiggleViewHistoryClass GiggleViewHistoryClass;
+typedef struct _GiggleViewHistoryPriv  GiggleViewHistoryPriv;
 
-struct GiggleViewHistory {
+struct _GiggleViewHistory {
 	GiggleView parent_instance;
+
+	GiggleViewHistoryPriv *priv;
 };
 
-struct GiggleViewHistoryClass {
+struct _GiggleViewHistoryClass {
 	GiggleViewClass parent_class;
 };
 

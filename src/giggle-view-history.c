@@ -45,8 +45,6 @@
 #define GIGGLE_IS_VIEW_HISTORY_SNAPSHOT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GIGGLE_TYPE_VIEW_HISTORY_SNAPSHOT))
 #define GIGGLE_VIEW_HISTORY_SNAPSHOT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GIGGLE_TYPE_VIEW_HISTORY_SNAPSHOT, GiggleViewHistorySnapshotClass))
 
-#define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GIGGLE_TYPE_VIEW_HISTORY, GiggleViewHistoryPriv))
-
 enum {
 	PROP_0,
 	PROP_UI_MANAGER,
@@ -57,7 +55,7 @@ enum {
 	REVISION_NUM_COLS
 };
 
-typedef struct {
+struct _GiggleViewHistoryPriv {
 	GtkWidget               *main_vpaned;
 	GtkWidget               *revision_shell;
 	GtkWidget               *view_diff;
@@ -72,7 +70,7 @@ typedef struct {
 	GiggleGitConfig         *configuration;
 
 	guint                    selection_changed_idle;
-} GiggleViewHistoryPriv;
+};
 
 typedef struct {
 	GObject              parent;
@@ -117,7 +115,7 @@ view_history_get_property (GObject      *object,
 {
 	GiggleViewHistoryPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_VIEW_HISTORY (object)->priv;
 
 	switch (param_id) {
 	case PROP_UI_MANAGER:
@@ -137,7 +135,7 @@ view_history_set_property (GObject      *object,
 {
 	GiggleViewHistoryPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_VIEW_HISTORY (object)->priv;
 
 	switch (param_id) {
 	case PROP_UI_MANAGER:
@@ -156,7 +154,7 @@ view_history_finalize (GObject *object)
 {
 	GiggleViewHistoryPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_VIEW_HISTORY (object)->priv;
 
 	if (priv->job) {
 		giggle_git_cancel_job (priv->git, priv->job);
@@ -183,9 +181,12 @@ view_history_set_busy (GtkWidget *widget,
 	GdkCursor *cursor;
 	GdkWindow *window;
 
-	if (!GTK_WIDGET_REALIZED (widget)) {
+#if GTK_CHECK_VERSION (2,19,5)
+	if (!gtk_widget_get_realized (widget))
+#else
+	if (!GTK_WIDGET_REALIZED (widget))
+#endif
 		return;
-	}
 
 	window = gtk_widget_get_window (widget);
 
@@ -241,7 +242,7 @@ view_history_get_branches_cb (GiggleGit    *git,
 	gboolean               changed;
 
 	view = GIGGLE_VIEW_HISTORY (user_data);
-	priv = GET_PRIV (view);
+	priv = view->priv;
 
 	if (error) {
 		GtkWidget *dialog;
@@ -301,7 +302,7 @@ view_history_diff_current_cb (GiggleGit *git,
 	GtkTreeIter            iter;
 	const gchar           *text;
 
-	priv = GET_PRIV (user_data);
+	priv = GIGGLE_VIEW_HISTORY (user_data)->priv;
 
 	/* FIXME: error report missing */
 	if (error) {
@@ -336,7 +337,7 @@ view_history_get_revisions_cb (GiggleGit    *git,
 	GList                 *revisions;
 
 	view = GIGGLE_VIEW_HISTORY (user_data);
-	priv = GET_PRIV (view);
+	priv = view->priv;
 
 	if (error) {
 		GtkWidget *dialog;
@@ -400,7 +401,7 @@ view_history_update_revisions (GiggleViewHistory  *view)
 {
 	GiggleViewHistoryPriv *priv;
 
-	priv = GET_PRIV (view);
+	priv = view->priv;
 
 	view_history_set_busy (GTK_WIDGET (priv->revision_list), TRUE);
 	giggle_rev_list_view_set_model (GIGGLE_REV_LIST_VIEW (priv->revision_list), NULL);
@@ -424,7 +425,7 @@ view_history_git_dir_notify (GiggleViewHistory *view)
 {
 	GiggleViewHistoryPriv *priv;
 
-	priv = GET_PRIV (view);
+	priv = view->priv;
 
 	view_history_update_revisions (view);
 
@@ -444,7 +445,7 @@ view_history_idle_cb (gpointer data)
 {
 	GiggleViewHistoryPriv *priv;
 
-	priv = GET_PRIV (data);
+	priv = GIGGLE_VIEW_HISTORY (data)->priv;
 
 	giggle_git_config_bind (priv->configuration,
 				GIGGLE_GIT_CONFIG_FIELD_HISTORY_VIEW_VPANE_POSITION,
@@ -460,7 +461,8 @@ view_history_selection_changed_idle (gpointer user_data)
 	GiggleViewHistoryPriv        *priv;
 	GList                        *files;
 
-	priv = GET_PRIV (data->view);
+	priv = GIGGLE_VIEW_HISTORY (data->view)->priv;
+
 	files = NULL;
 
 	giggle_view_diff_set_revisions (GIGGLE_VIEW_DIFF (priv->view_diff),
@@ -478,7 +480,7 @@ view_history_revision_list_selection_changed_cb (GiggleRevListView *list,
 	GiggleViewHistoryPriv        *priv;
 	ViewHistorySelectionIdleData *data;
 
-	priv = GET_PRIV (view);
+	priv = view->priv;
 
 	giggle_revision_view_set_revision (
 		GIGGLE_REVISION_VIEW (priv->revision_view), revision1);
@@ -504,13 +506,15 @@ view_history_revision_list_key_press_cb (GiggleRevListView *list,
 					 GdkEventKey        *event,
 					 GiggleViewHistory  *view)
 {
-	GiggleViewHistoryPriv *priv = GET_PRIV (view);
+	GiggleViewHistoryPriv *priv;
 	GtkTreePath           *path, *start, *end;
 	GtkTreeSelection      *selection;
 	GtkAdjustment         *adj;
 	gdouble                value;
 	gdouble                adj_value;
 	gdouble                page_size;
+
+	priv = view->priv;
 
 	if (event->keyval != GDK_space && event->keyval != GDK_BackSpace)
 		return FALSE;
@@ -550,7 +554,7 @@ view_history_setup_revision_list (GObject *object)
 {
 	GiggleViewHistoryPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_VIEW_HISTORY (object)->priv;
 
 	priv->revision_list_sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->revision_list_sw),
@@ -578,7 +582,7 @@ view_history_setup_revision_pane (GObject *object)
 	GtkWidget             *vbox;
 	GtkWidget	      *toolbar;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_VIEW_HISTORY (object)->priv;
 
 	gtk_rc_parse_string ("style \"view-history-toolbar-style\" {"
 			     "  GtkToolbar::shadow-type = none"
@@ -616,7 +620,7 @@ view_history_constructed (GObject *object)
 {
 	GiggleViewHistoryPriv *priv;
 
-	priv = GET_PRIV (object);
+	priv = GIGGLE_VIEW_HISTORY (object)->priv;
 
 	/* git interaction */
 	priv->git = giggle_git_get ();
@@ -674,7 +678,7 @@ view_history_search (GiggleSearchable      *searchable,
 {
 	GiggleViewHistoryPriv *priv;
 
-	priv = GET_PRIV (searchable);
+	priv = GIGGLE_VIEW_HISTORY (searchable)->priv;
 
 	if (!giggle_searchable_search (GIGGLE_SEARCHABLE (priv->revision_list),
 				       search_term, direction, full_search)) {
@@ -704,7 +708,7 @@ view_history_cancel_search (GiggleSearchable *searchable)
 {
 	GiggleViewHistoryPriv *priv;
 
-	priv = GET_PRIV (searchable);
+	priv = GIGGLE_VIEW_HISTORY (searchable)->priv;
 
 	giggle_searchable_cancel (GIGGLE_SEARCHABLE (priv->revision_list));
 }
@@ -756,7 +760,7 @@ giggle_view_history_snapshot_class_init (GiggleViewHistorySnapshotClass *class)
 static GObject *
 view_history_capture (GiggleHistory *history)
 {
-	GiggleViewHistoryPriv     *priv = GET_PRIV (history);
+	GiggleViewHistoryPriv     *priv;
 	GiggleViewHistorySnapshot *snapshot;
 	GtkTreeRowReference       *reference;
 	GtkTreeSelection          *selection;
@@ -764,6 +768,8 @@ view_history_capture (GiggleHistory *history)
 	GtkTreeModel              *model;
 	GtkTreePath               *path;
 	GList                     *l;
+
+	priv = GIGGLE_VIEW_HISTORY (history)->priv;
 
 	snapshot = g_object_new (GIGGLE_TYPE_VIEW_HISTORY_SNAPSHOT, NULL);
 
@@ -793,13 +799,16 @@ static void
 view_history_restore (GiggleHistory *history,
 		      GObject       *object)
 {
-	GiggleViewHistoryPriv     *priv = GET_PRIV (history);
+	GiggleViewHistoryPriv     *priv;
 	GtkTreeSelection          *selection;
 	GiggleViewHistorySnapshot *snapshot;
 	GtkTreePath               *path;
 	GList                     *l;
 
 	g_return_if_fail (GIGGLE_IS_VIEW_HISTORY_SNAPSHOT (object));
+
+	priv = GIGGLE_VIEW_HISTORY (history)->priv;
+
 	snapshot = GIGGLE_VIEW_HISTORY_SNAPSHOT (object);
 
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->revision_list));
@@ -828,6 +837,9 @@ giggle_view_history_history_init (GiggleHistoryIface *iface)
 static void
 giggle_view_history_init (GiggleViewHistory *view)
 {
+	view->priv = G_TYPE_INSTANCE_GET_PRIVATE (view,
+	                                          GIGGLE_TYPE_VIEW_HISTORY,
+	                                          GiggleViewHistoryPriv);
 }
 
 GtkWidget *
@@ -857,7 +869,7 @@ giggle_view_history_set_graph_visible (GiggleViewHistory *view,
 
 	g_return_if_fail (GIGGLE_IS_VIEW_HISTORY (view));
 
-	priv = GET_PRIV (view);
+	priv = view->priv;
 
 	giggle_rev_list_view_set_graph_visible (
 		GIGGLE_REV_LIST_VIEW (priv->revision_list), visible);
@@ -874,7 +886,7 @@ giggle_view_history_select (GiggleViewHistory *view,
 	g_return_val_if_fail (GIGGLE_IS_VIEW_HISTORY (view), FALSE);
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision) || !revision, FALSE);
 
-	priv = GET_PRIV (view);
+	priv = view->priv;
 
 	selection = g_list_prepend (NULL, revision);
 	count = giggle_rev_list_view_set_selection (GIGGLE_REV_LIST_VIEW (priv->revision_list), selection);

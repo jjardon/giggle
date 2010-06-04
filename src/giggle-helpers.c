@@ -23,6 +23,8 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
+#include <glib/gi18n.h>
+
 #include "giggle-helpers.h"
 #include "libgiggle-git/giggle-git.h"
 
@@ -128,6 +130,8 @@ giggle_tree_view_select_row_by_string (GtkWidget  *treeview,
 		g_free (text);
 		return TRUE;
 	}
+	g_free (text);
+	text = NULL;
 
 	if (tree_model_find_string (model, &iter, NULL, column, pattern)) {
 		path = gtk_tree_model_get_path (model, &iter);
@@ -161,35 +165,32 @@ giggle_ui_manager_get_action_group (GtkUIManager *manager,
 	return NULL;
 }
 
-GAppLaunchContext *
-giggle_create_app_launch_context (GtkWidget *widget)
+void
+giggle_error_dialog (GtkWindow *window,
+                     GError    *error)
 {
-#if GTK_CHECK_VERSION(2,14,0)
-	GdkAppLaunchContext *context;
-	GdkScreen           *screen = NULL;
+	GtkWidget *widget;
 
-	context = gdk_app_launch_context_new ();
+	widget = gtk_message_dialog_new (window,
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_CLOSE,
+	                                 "%s", _("An error ocurred:"));
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (widget),
+	                                          "%s", error->message);
 
-	if (widget) {
-		screen = gtk_widget_get_screen (widget);
-		gdk_app_launch_context_set_screen (context, screen);
-	}
-
-	return G_APP_LAUNCH_CONTEXT (context);
-#else
-	return g_app_launch_context_new ();
-#endif
+	gtk_dialog_run (GTK_DIALOG (widget));
+	gtk_widget_destroy (widget);
 }
 
 void
-giggle_open_file_with_context (GAppLaunchContext *context,
-			       const char        *directory,
-			       const char        *filename)
+giggle_open_file (GtkWidget  *widget,
+                  const char *directory,
+                  const char *filename)
 {
 	GError *error = NULL;
 	char   *path, *uri;
 
-	g_return_if_fail (G_IS_APP_LAUNCH_CONTEXT (context));
 	g_return_if_fail (NULL != filename);
 
 	if (!directory)
@@ -200,8 +201,11 @@ giggle_open_file_with_context (GAppLaunchContext *context,
 	path = g_build_filename (directory, filename, NULL);
 	uri = g_filename_to_uri (path, NULL, &error);
 
-	if (!uri || !g_app_info_launch_default_for_uri (uri, context, &error)) {
-		g_warning ("%s: %s", G_STRFUNC, error->message);
+	gtk_show_uri (gtk_widget_get_screen (widget),
+	              uri,  gtk_get_current_event_time (),
+	              &error);
+	if (error != NULL) {
+		giggle_error_dialog (GTK_WINDOW (widget), error);
 		g_clear_error (&error);
 	}
 
@@ -209,14 +213,67 @@ giggle_open_file_with_context (GAppLaunchContext *context,
 	g_free (uri);
 }
 
-void
-giggle_open_file (GtkWidget  *widget,
-		  const char *directory,
-		  const char *filename)
+static gboolean
+delete_directory_recursive (GFile *dir, GError **error)
 {
-	GAppLaunchContext *context;
+	gchar *uri;
+	GFileEnumerator *file_enum;
+	GFileInfo *info;
+	gboolean _failure = FALSE;
 
-	context = giggle_create_app_launch_context (widget);
-	giggle_open_file_with_context (context, directory, filename);
-	g_object_unref (context);
+	if (error != NULL)
+		*error = NULL;
+
+	file_enum = g_file_enumerate_children (dir,
+					       G_FILE_ATTRIBUTE_STANDARD_NAME ","
+					       G_FILE_ATTRIBUTE_STANDARD_TYPE,
+					       G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS, NULL, error);
+
+	uri = g_file_get_uri (dir);
+	while (! _failure &&
+               (info = g_file_enumerator_next_file (file_enum, NULL, error))) {
+		gchar *child_uri;
+		GFile *child;
+
+		child_uri = g_build_filename (uri, g_file_info_get_name (info), NULL);
+		child = g_file_new_for_uri (child_uri);
+		g_free (child_uri);
+
+		switch (g_file_info_get_file_type (info)) {
+		case G_FILE_TYPE_DIRECTORY:
+			if (! delete_directory_recursive (child, error))
+				_failure = TRUE;
+			break;
+		default:
+			if (! g_file_delete (child, NULL, error))
+				_failure = TRUE;
+			break;
+		}
+
+		g_object_unref (child);
+		g_object_unref (info);
+	}
+	if (file_enum)
+		g_object_unref (file_enum);
+	g_free (uri);
+
+	if (! _failure && ! g_file_delete (dir, NULL, error))
+		_failure = TRUE;
+
+	return !_failure;
+}
+
+void
+giggle_remove_directory_recursive (const gchar *path)
+{
+	GFile *dir;
+	GError *error = NULL;
+
+	dir = g_file_new_for_path (path);
+	delete_directory_recursive (dir, &error);
+	if (error) {
+		g_warning ("Cannot delete %s: %s", path, error->message);
+		g_error_free (error);
+	}
+	g_object_unref (dir);
 }

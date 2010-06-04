@@ -36,15 +36,14 @@ gboolean            giggle_tree_view_select_row_by_string (GtkWidget         *tr
 GtkActionGroup *    giggle_ui_manager_get_action_group    (GtkUIManager      *manager,
 							   const char        *group_name);
 
-GAppLaunchContext * giggle_create_app_launch_context      (GtkWidget         *widget);
-
-void                giggle_open_file_with_context         (GAppLaunchContext *context,
-							   const char        *directory,
-							   const char        *filename);
-
 void                giggle_open_file                      (GtkWidget         *widget,
 							   const char        *directory,
 							   const char        *filename);
+
+void                giggle_error_dialog                   (GtkWindow         *window,
+                                                           GError            *error);
+
+void                giggle_remove_directory_recursive     (const gchar       *uri);
 
 G_END_DECLS
 

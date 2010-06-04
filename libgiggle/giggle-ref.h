@@ -34,16 +34,19 @@ G_BEGIN_DECLS
 
 typedef struct _GiggleRef      GiggleRef;
 typedef struct _GiggleRefClass GiggleRefClass;
+typedef struct _GiggleRefPriv  GiggleRefPriv;
 
 struct _GiggleRef {
 	GObject parent_instance;
+
+	GiggleRefPriv *priv;
 };
 
 struct _GiggleRefClass {
 	GObjectClass parent_class;
 };
 
-GType                   giggle_ref_get_type          (void);
+GType                   giggle_ref_get_type          (void) G_GNUC_CONST;
 GiggleRef             * giggle_ref_new               (const gchar *name);
 
 G_CONST_RETURN gchar  * giggle_ref_get_name          (GiggleRef   *ref);
