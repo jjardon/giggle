@@ -21,7 +21,7 @@
       <gnome:userid>tbf</gnome:userid>
     </foaf:Person>
   </maintainer>
-  <mantainer>
+  <maintainer>
     <foaf:Person>
       <foaf:name>Javier Jardón</foaf:name>
       <foaf:mbox rdf:resource="mailto:jjardon@gnome.org" />
